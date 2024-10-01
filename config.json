@@ -1,0 +1,17 @@
+{
+    "projects": {
+      "locationBasedAR": {
+        "enabled": true
+      },
+      "targetBasedAR": {
+        "enabled": true
+      }
+    },
+    "gltfModels": [
+      {
+        "id": "cube",
+        "src": "./static/3D-files/cube.gltf"
+      }
+    ]
+  }
+  

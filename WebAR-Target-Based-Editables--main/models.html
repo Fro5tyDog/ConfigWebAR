@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Models</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Candal&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  </head>
+  <body>
+    <div id="headerDiv">
+      <img id="arrowLeft" src="./static/images/icons/arrow_left.png" onClick="location.href='./index.html'">
+      <h1 id="headerTop">Add AR Models</h1>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <div style="border-bottom: 0.3vh solid gray; width: 82%;"></div>
+    </div>
+
+    <div id="cotentDiv">
+      <h5 style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500; font-size: 4vw; margin: 4% 0;">Tap on any characters to load them in AR mode!</h5>
+      <div id="modelsDiv">
+        <img style="width: 55%;" id="tapImg1" class="tapImg" src="static/images/ExpoMarch2024/Chinese_Worker.png">
+        <img style="width: 35%;" id="tapImg2" class="tapImg" src="./static/images/ExpoMarch2024/Construction.png">
+      </div>
+    </div>
+    
+    <!-- Chinese Worker -->
+    <model-viewer style="display: none" ar-placement="floor" ar ar-modes="scene-viewer quick-look" reveal="manual" poster="static/images/ExpoMarch2024/Chinese_Worker.png" id="modelViewer1" ar camera-controls touch-action="pan-y" src="./static/3D-file/glb/ExpoMarch2024/a_chinese_worker.glb" shadow-intensity="1" alt="A 3D model of an astronaut.">
+    </model-viewer>
+
+    <!-- Construction Model Placeholder -->
+    <model-viewer  style="display: none" ar-placement="floor" ar ar-modes="scene-viewer quick-look" reveal="manual" poster="./static/images/ExpoMarch2024/Construction.png" id="modelViewer2" ar camera-controls touch-action="none" src="./static/3D-file/glb/ExpoMarch2024/bim_kampus.glb" shadow-intensity="1" alt="A 3D model of an astronaut.">
+    </model-viewer>
+
+    
+    
+    <script>
+      function addClickListeners(numElements) {
+        for (let i = 1; i <= numElements; i++) {
+          const tapImg = window['tapImg' + i];
+          const modelViewerId = 'modelViewer' + i;
+          console.log(i)
+
+          tapImg.addEventListener("click", () => {
+            document.getElementById(modelViewerId).activateAR();
+          });
+        }
+      }
+      // Usage with 10 elements
+      addClickListeners(2);
+    </script>
+  </body>
+</html> 

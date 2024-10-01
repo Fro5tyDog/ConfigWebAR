@@ -1,0 +1,169 @@
+/* Fonts */
+@font-face {
+    font-family: 'Anek Telugu Light';
+    src: url('../fonts/Anek_Telugu/static/AnekTelugu-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Anek Telugu SemiBold';
+    src: url('../fonts/Anek_Telugu/static/AnekTelugu-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Anek Telugu Light', sans-serif;
+    background-color: #e4e4e4;
+    overflow: hidden; 
+}
+
+.light {
+    background-color: #e4e4e4;
+}
+
+.dark {
+    background-color: #282828;
+    color: white;
+}
+
+/* Dark/Light Mode Toggle */
+.display-flex {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.display-mode-container {
+    background-color: #3F3F3F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.display-mode-container img {
+    width: 40px;
+    cursor: pointer;
+}
+
+/* Title */
+.title-flex {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.title-container {
+    font-family: 'Anek Telugu SemiBold', sans-serif;
+    font-size: 50px;
+    line-height: 1.2;
+    word-break: break-word;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow effect for the title */
+}
+
+/* AR Apps Grid */
+.all-apps-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0;
+    margin-top: calc(50vh - 200px); /* Position apps closer to the halfway point */
+    flex-wrap: wrap;
+}
+
+.app-icon-border {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.app-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #b7b7b7;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(120, 182, 248, 0.288);  /* Blue shadow effect */
+    transition: transform 0.2s ease;
+}
+
+.app-container:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.app-container img {
+    width: 85%;
+    height: 85%;
+}
+
+h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .title-container {
+        font-size: 45px;
+        margin: 0 20px;
+    }
+
+    .all-apps-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .app-icon-border {
+        margin-bottom: 50px;
+    }
+
+    .app-container {
+        width: 180px;
+        height: 180px;
+    }
+    body{
+        overflow: scroll;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-container {
+        font-size: 42px;
+    }
+
+    .app-container {
+        width: 160px;
+        height: 160px;
+        box-shadow: 0px 3px 10px rgba(0, 122, 255, 0.4);  /* Adjust blue shadow for smaller screens */
+    }
+
+    .app-container img {
+        width: 75%;
+        height: 75%;
+    }
+    body{
+        overflow: scroll;
+    }
+}
+
+/* Disabled app containers */
+.app-container.disabled {
+    pointer-events: none; /* Prevent interaction */
+    background-color: rgb(255, 0, 0); /* Grey out */
+    opacity: 0.6; /* Optional: Semi-transparent */
+}
+
+
+  

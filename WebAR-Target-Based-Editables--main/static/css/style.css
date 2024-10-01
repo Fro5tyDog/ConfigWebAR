@@ -1,0 +1,222 @@
+/* ############################# */
+/* Index CSS verticle */
+@media screen and (orientation: portrait) {
+  #UI-overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+  }
+
+
+  #scanning-overlay{
+    margin-top: 12vh;
+    text-align: center;
+  }
+
+  #scanning-overlay.hidden{
+    visibility: hidden;
+  }
+
+  #scanBoxP{
+    /* font-family: Roboto;  */
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-size: 4vw;  */
+    font-size: 1.1em;
+    font-weight: 600;
+    color: rgb(225, 216, 216);
+    margin-top: -15%;  
+  }
+
+  #UI-placement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #scanBoxSize{
+    width: 80%; 
+    height: 80%; 
+    margin-left: 10%;
+  }
+
+  #iconsDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 9vh;
+    width: 91%;
+  }
+
+  .btnP{
+    /* font-family: Roboto;  */
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 3vw; 
+    font-weight: 600;
+    color: rgb(225, 216, 216);
+    margin-top: 7%;
+  }
+
+  .btnDiv{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #pDistance{
+    margin: 0 20vw;
+  }
+
+  #loadModelsButton{
+    position: relative;
+    z-index: 1;
+    width: 7vh;
+    height: 7vh;
+  }
+  #moreInfoButton{
+    width: 7vh;
+    height: 7vh;
+  }
+}
+
+
+/* ############################# */
+/* Index CSS horizontal */
+@media screen and (orientation: landscape) {
+  #UI-overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+  }
+
+
+  #scanning-overlay{
+    margin-top: 12vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #scanning-overlay.hidden{
+    visibility: hidden;
+  }
+
+  #scanBoxP{
+    /* font-family: Roboto;  */
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-size: 2.5vw; */
+    font-size: 1.45em;
+    font-weight: 600;
+    color: rgb(225, 216, 216);
+    margin-top: 0;
+  }
+
+  #UI-placement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #scanBoxSize{
+    width: 90%; 
+    height: 90%; 
+    margin-left: 5%;
+  }
+
+  #iconsDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 9vh;
+    width: 91%;
+    display: none;
+  }
+
+  .btnP{
+    /* font-family: Roboto;  */
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 3vw; 
+    font-weight: 600;
+    color: rgb(225, 216, 216);
+    margin-top: 7%;
+  }
+
+  .btnDiv{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #pDistance{
+    margin: 0 20vw;
+  }
+
+  #loadModelsButton{
+    position: relative;
+    z-index: 1;
+    width: 7vh;
+    height: 7vh;
+  }
+  #moreInfoButton{
+    width: 7vh;
+    height: 7vh;
+  }
+
+}
+
+
+/* ############################# */
+/* Model-Viewer CSS */
+#headerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+}
+
+#arrowLeft{
+  width: 9%;
+  height: 9%;
+}
+
+#headerTop{
+  /* font-family: Roboto; */
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 6.7vw;
+  margin-right: 9%; 
+  padding: 3vw 14%;
+}
+
+#cotentDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+#modelsDiv{
+  text-align: center;
+}
+
+.tapImg{
+  height: 45%; 
+  width: 45%;
+  border: 0.3vh solid gray;
+  margin: 1% 1%;
+}
+
+
+/* ############################# */
