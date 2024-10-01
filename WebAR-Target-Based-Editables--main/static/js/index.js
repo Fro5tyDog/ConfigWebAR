@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Step 2: Create the <a-entity> tags for each target index after assets are ready
       for (let i = 0; i < targetCount; i++) {
         const entity = document.createElement('a-entity');
-        entity.setAttribute('mindar-image-target', `targetIndex: ${i}`);
-
+        entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
+        
         // Find the model assigned to this target index
         const model = models.find(model => model.targetIndex === i);
 
