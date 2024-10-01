@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
       for (let i = 0; i < targetCount; i++) {
         const entity = document.createElement('a-entity');
         entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
-        
+        entity.classList.add(`target-index-${i}`);
+
         // Find the model assigned to this target index
         const model = models.find(model => model.targetIndex === i);
 
@@ -95,11 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.setAttribute('height', '180');
     document.body.appendChild(videoElement); // Append to the body
 
-    const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
+    // const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
     
     // Listen for the target being found
+    // Use the class corresponding to the video target index to find the correct entity
+    const listener = document.querySelector(`.target-index-${videoConfig.targetIndex}`);
+
+    // Listen for the target being found
     if (listener) {
-      // Listen for the target being found
       listener.addEventListener('targetFound', () => onTargetFound(videoElement));
     } else {
       console.error(`Listener for targetIndex: ${videoConfig.targetIndex} not found`);
