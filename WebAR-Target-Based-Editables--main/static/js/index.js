@@ -1,5 +1,5 @@
 // Fetch the config file to dynamically load the GLTF models
-fetch('../config.json')
+fetch('../config.json')  // Load the config file
   .then(response => response.json())
   .then(config => {
     const models = config.gltfModels;
