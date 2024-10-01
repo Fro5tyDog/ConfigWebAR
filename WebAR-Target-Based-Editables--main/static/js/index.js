@@ -76,6 +76,67 @@ document.addEventListener("DOMContentLoaded", function () {
           arSystem.start();
       }
   }
+  //Function to create and insert a video element dynamically
+  function createVideo(videoConfig) {
+    const videoElement = document.createElement('video');
+    videoElement.setAttribute('id', videoConfig.id);
+    videoElement.setAttribute('src', videoConfig.src);
+    videoElement.setAttribute('controls', true);
+    videoElement.setAttribute('loop', true);
+    videoElement.setAttribute('webkit-playsinline', true);
+    videoElement.setAttribute('playsinline', true);
+    videoElement.style.display = 'none';
+    videoElement.style.position = 'absolute';
+    videoElement.style.top = '50%';
+    videoElement.style.left = '50%';
+    videoElement.style.transform = 'translate(-50%, -50%)';
+    videoElement.setAttribute('width', '320');
+    videoElement.setAttribute('height', '180');
+    document.body.appendChild(videoElement); // Append to the body
+
+    const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
+    
+    // Listen for the target being found
+    listener.addEventListener('targetFound', () => onTargetFound(videoElement));
+  }
+
+  // Function to handle target found, plays the video, shows the buttons, etc.
+  function onTargetFound(videoElement) {
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const UIoverlay = document.getElementById('UI-placement');
+
+    // Show video and buttons
+    playPauseBtn.style.display = 'block';
+    cancelBtn.style.display = 'block';
+    videoElement.style.display = 'block';
+    UIoverlay.style.display = 'none';
+
+    // Stop the AR system from scanning multiple targets
+    arSystem.stop();
+
+    // Attach event listeners for play/pause button (for this specific video)
+    playPauseBtn.onclick = function() {
+      if (videoElement.paused) {
+        videoElement.play();
+        playPauseBtn.textContent = 'Pause';
+      } else {
+        videoElement.pause();
+        playPauseBtn.textContent = 'Play';
+      }
+    };
+
+    // Handle the cancel action
+    cancelBtn.onclick = function() {
+      playPauseBtn.style.display = 'none';
+      cancelBtn.style.display = 'none';
+      videoElement.pause();
+      playPauseBtn.textContent = 'Play';
+      videoElement.style.display = 'none';
+      UIoverlay.style.display = 'flex';
+      arSystem.start();
+    };
+  } 
 
 
   // const video = document.getElementById('video');
@@ -144,64 +205,3 @@ screen.orientation.addEventListener("change", () => {
   arSystem.start();
 });
 
-//Function to create and insert a video element dynamically
-function createVideo(videoConfig) {
-  const videoElement = document.createElement('video');
-  videoElement.setAttribute('id', videoConfig.id);
-  videoElement.setAttribute('src', videoConfig.src);
-  videoElement.setAttribute('controls', true);
-  videoElement.setAttribute('loop', true);
-  videoElement.setAttribute('webkit-playsinline', true);
-  videoElement.setAttribute('playsinline', true);
-  videoElement.style.display = 'none';
-  videoElement.style.position = 'absolute';
-  videoElement.style.top = '50%';
-  videoElement.style.left = '50%';
-  videoElement.style.transform = 'translate(-50%, -50%)';
-  videoElement.setAttribute('width', '320');
-  videoElement.setAttribute('height', '180');
-  document.body.appendChild(videoElement); // Append to the body
-
-  const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
-  
-  // Listen for the target being found
-  listener.addEventListener('targetFound', () => onTargetFound(videoElement));
-}
-
-// Function to handle target found, plays the video, shows the buttons, etc.
-function onTargetFound(videoElement) {
-  const playPauseBtn = document.getElementById('playPauseBtn');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const UIoverlay = document.getElementById('UI-placement');
-
-  // Show video and buttons
-  playPauseBtn.style.display = 'block';
-  cancelBtn.style.display = 'block';
-  videoElement.style.display = 'block';
-  UIoverlay.style.display = 'none';
-
-  // Stop the AR system from scanning multiple targets
-  arSystem.stop();
-
-  // Attach event listeners for play/pause button (for this specific video)
-  playPauseBtn.onclick = function() {
-    if (videoElement.paused) {
-      videoElement.play();
-      playPauseBtn.textContent = 'Pause';
-    } else {
-      videoElement.pause();
-      playPauseBtn.textContent = 'Play';
-    }
-  };
-
-  // Handle the cancel action
-  cancelBtn.onclick = function() {
-    playPauseBtn.style.display = 'none';
-    cancelBtn.style.display = 'none';
-    videoElement.pause();
-    playPauseBtn.textContent = 'Play';
-    videoElement.style.display = 'none';
-    UIoverlay.style.display = 'flex';
-    arSystem.start();
-  };
-} 
