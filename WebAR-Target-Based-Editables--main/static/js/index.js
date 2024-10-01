@@ -1,51 +1,50 @@
+document.addEventListener("DOMContentLoaded", function () {
 // Fetch the config file to dynamically load the GLTF models
 // Fetch the config file  
-fetch('../config.json')
-  .then(response => response.json())
-  .then(config => {
-    const videos = config.videos;
-    const models = config.gltfModels;
-    const targetCount = config.targetCount;
+  fetch('../config.json')
+    .then(response => response.json())
+    .then(config => {
+      const videos = config.videos;
+      const models = config.gltfModels;
+      const targetCount = config.targetCount;
 
-    const scene = document.querySelector('a-scene'); // Assuming a-scene is already in your HTML
-    const assetsContainer = document.getElementById('gltf-assets-container');
+      const scene = document.querySelector('a-scene'); // Assuming a-scene is already in your HTML
+      const assetsContainer = document.getElementById('gltf-assets-container');
 
-    // Step 1: Dynamically create <a-asset-item> elements for GLTF models
-    models.forEach(model => {
-      const assetItem = document.createElement('a-asset-item');
-      assetItem.setAttribute('id', model.id);
-      assetItem.setAttribute('src', model.src);
-      assetsContainer.appendChild(assetItem);
-    });
+      // Step 1: Dynamically create <a-asset-item> elements for GLTF models
+      models.forEach(model => {
+        const assetItem = document.createElement('a-asset-item');
+        assetItem.setAttribute('id', model.id);
+        assetItem.setAttribute('src', model.src);
+        assetsContainer.appendChild(assetItem);
+      });
 
-    // Step 2: Create the <a-entity> tags for each target index after assets are ready
-    for (let i = 0; i < targetCount; i++) {
-      const entity = document.createElement('a-entity');
-      entity.setAttribute('mindar-image-target', `targetIndex: ${i}`);
+      // Step 2: Create the <a-entity> tags for each target index after assets are ready
+      for (let i = 0; i < targetCount; i++) {
+        const entity = document.createElement('a-entity');
+        entity.setAttribute('mindar-image-target', `targetIndex: ${i}`);
 
-      // Find the model assigned to this target index
-      const model = models.find(model => model.targetIndex === i);
+        // Find the model assigned to this target index
+        const model = models.find(model => model.targetIndex === i);
 
-      if (model) {
-        const gltfModel = document.createElement('a-gltf-model');
-        gltfModel.setAttribute('src', `#${model.id}`);
-        entity.appendChild(gltfModel);
+        if (model) {
+          const gltfModel = document.createElement('a-gltf-model');
+          gltfModel.setAttribute('src', `#${model.id}`);
+          entity.appendChild(gltfModel);
+        }
+
+        scene.appendChild(entity);
       }
 
-      scene.appendChild(entity);
-    }
+      // Step 3: Create video elements for each video in the config
+      videos.forEach(videoConfig => {
+        createVideo(videoConfig);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading config:', error);
+  });
 
-    // Step 3: Create video elements for each video in the config
-    videos.forEach(videoConfig => {
-      createVideo(videoConfig);
-    });
-  })
-  .catch(error => {
-    console.error('Error loading config:', error);
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
   // Check Camera location
   const cameraEl = document.querySelector('a-camera'); // Get the camera entity
   const cameraPosition = cameraEl.object3D.position; // Get the position vector of the camera
