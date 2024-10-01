@@ -1,17 +1,23 @@
 {
-    "projects": {
-      "locationBasedAR": {
-        "enabled": false
-      },
-      "targetBasedAR": {
-        "enabled": true
-      }
+  "projects": {
+    "locationBasedAR": {
+      "enabled": false
     },
-    "gltfModels": [
-      {
-        "id": "cube",
-        "src": "./static/3D-files/cube.gltf"
-      }
-    ]
+    "targetBasedAR": {
+      "enabled": true
+    }
+  },
+  "gltfModels": [
+    {
+      "id": "cube",
+      "src": "./static/3D-files/cube.gltf",
+      "targetIndex": 0
+    },
+    {
+      "id": "car",
+      "src": "./static/3D-files/car.gltf",
+      "targetIndex": 1
+    }
+  ],
+  "targetCount": 2
 }
-  
