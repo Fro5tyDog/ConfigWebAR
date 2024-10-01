@@ -12,11 +12,6 @@
       "id": "cube",
       "src": "./static/3D-files/cube.gltf",
       "targetIndex": 0
-    },
-    {
-      "id": "car",
-      "src": "./static/3D-files/car.gltf",
-      "targetIndex": 1
     }
   ],
   "targetCount": 2
