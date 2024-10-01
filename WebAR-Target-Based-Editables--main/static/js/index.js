@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(videoElement); // Append to the body
 
     const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
-    console.log(videoConfig.targetIndex);
     
     // Listen for the target being found
     if (listener) {
