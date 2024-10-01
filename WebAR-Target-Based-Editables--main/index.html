@@ -40,14 +40,17 @@
     
     <a-scene mindar-image="imageTargetSrc: ./static/mind-file/target.mind; uiScanning: #scanning-overlay; filterMinCF:0.0001; filterBeta: 0.001;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" embedded>
 
+      
       <a-assets id="gltf-assets-container">
         <!-- GLTF models will be dynamically inserted here -->
       </a-assets>
       
+      <!-- Entities will be dynamically inserted here -->
+      
       <!-- GLTF/GLB -->
-      <a-entity mindar-image-target="targetIndex: 0">
+      <!-- <a-entity mindar-image-target="targetIndex: 0">
         <a-gltf-model src="#cube"></a-gltf-model>
-      </a-entity>
+      </a-entity> -->
 
       <!-- Videos -->
       <!-- <a-entity mindar-image-target="targetIndex: 1">

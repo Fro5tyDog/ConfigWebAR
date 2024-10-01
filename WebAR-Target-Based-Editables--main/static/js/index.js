@@ -1,11 +1,32 @@
 // Fetch the config file to dynamically load the GLTF models
-fetch('../config.json')  // Load the config file
+// Fetch the config file
+fetch('../config.json')
   .then(response => response.json())
   .then(config => {
     const models = config.gltfModels;
-    const assetsContainer = document.getElementById('gltf-assets-container');
+    const targetCount = config.targetCount;
 
-    // Dynamically create <a-asset-item> elements
+    const scene = document.querySelector('a-scene'); // Assuming a-scene is already in your HTML
+
+    // Create the <a-entity> tags for each target index
+    for (let i = 0; i < targetCount; i++) {
+      const entity = document.createElement('a-entity');
+      entity.setAttribute('mindar-image-target', `targetIndex: ${i}`);
+      
+      // Find the model assigned to this target index
+      const model = models.find(model => model.targetIndex === i);
+      
+      if (model) {
+        const gltfModel = document.createElement('a-gltf-model');
+        gltfModel.setAttribute('src', `#${model.id}`);
+        entity.appendChild(gltfModel);
+      }
+      
+      scene.appendChild(entity);
+    }
+
+    // Dynamically create <a-asset-item> elements for GLTF models
+    const assetsContainer = document.getElementById('gltf-assets-container');
     models.forEach(model => {
       const assetItem = document.createElement('a-asset-item');
       assetItem.setAttribute('id', model.id);
@@ -16,6 +37,7 @@ fetch('../config.json')  // Load the config file
   .catch(error => {
     console.error('Error loading config:', error);
   });
+
 
 document.addEventListener("DOMContentLoaded", function () {
   // Check Camera location
