@@ -22,11 +22,13 @@
     <div id="cotentDiv">
       <h5 style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500; font-size: 4vw; margin: 4% 0;">Tap on any characters to load them in AR mode!</h5>
       <div id="modelsDiv">
+        <!-- Dynamically load this-->
         <img style="width: 55%;" id="tapImg1" class="tapImg" src="static/images/ExpoMarch2024/Chinese_Worker.png">
         <img style="width: 35%;" id="tapImg2" class="tapImg" src="./static/images/ExpoMarch2024/Construction.png">
       </div>
     </div>
     
+    <!-- dynamically load this  -->
     <!-- Chinese Worker -->
     <model-viewer style="display: none" ar-placement="floor" ar ar-modes="scene-viewer quick-look" reveal="manual" poster="static/images/ExpoMarch2024/Chinese_Worker.png" id="modelViewer1" ar camera-controls touch-action="pan-y" src="./static/3D-file/glb/ExpoMarch2024/a_chinese_worker.glb" shadow-intensity="1" alt="A 3D model of an astronaut.">
     </model-viewer>
@@ -37,20 +39,6 @@
 
     
     
-    <script>
-      function addClickListeners(numElements) {
-        for (let i = 1; i <= numElements; i++) {
-          const tapImg = window['tapImg' + i];
-          const modelViewerId = 'modelViewer' + i;
-          console.log(i)
-
-          tapImg.addEventListener("click", () => {
-            document.getElementById(modelViewerId).activateAR();
-          });
-        }
-      }
-      // Usage with 10 elements
-      addClickListeners(2);
-    </script>
+    <script src="./static/js/models.js"></script>
   </body>
 </html> 
