@@ -14,5 +14,12 @@
       "targetIndex": 0
     }
   ],
+  "videos": [
+    {
+      "id": "video1",
+      "src": "./static/video/TestSec.mp4",
+      "targetIndex": 1
+    }
+  ],
   "targetCount": 2
 }

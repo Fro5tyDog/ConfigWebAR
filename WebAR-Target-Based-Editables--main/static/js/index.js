@@ -3,6 +3,7 @@
 fetch('../config.json')
   .then(response => response.json())
   .then(config => {
+    const videos = config.videos;
     const models = config.gltfModels;
     const targetCount = config.targetCount;
 
@@ -32,6 +33,11 @@ fetch('../config.json')
       assetItem.setAttribute('id', model.id);
       assetItem.setAttribute('src', model.src);
       assetsContainer.appendChild(assetItem);
+    });
+
+    // Dynamically create video elements for each video in the config
+    videos.forEach(videoConfig => {
+      createVideo(videoConfig);
     });
   })
   .catch(error => {
@@ -71,45 +77,107 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   }
 
-  const video = document.getElementById('video');
-  const listener = document.querySelector('[mindar-image-target="targetIndex: 1"]');
+ // Function to create and insert a video element dynamically
+function createVideo(videoConfig) {
+  const videoElement = document.createElement('video');
+  videoElement.setAttribute('id', videoConfig.id);
+  videoElement.setAttribute('src', videoConfig.src);
+  videoElement.setAttribute('controls', true);
+  videoElement.setAttribute('loop', true);
+  videoElement.setAttribute('webkit-playsinline', true);
+  videoElement.setAttribute('playsinline', true);
+  videoElement.style.display = 'none';
+  videoElement.style.position = 'absolute';
+  videoElement.style.top = '50%';
+  videoElement.style.left = '50%';
+  videoElement.style.transform = 'translate(-50%, -50%)';
+  videoElement.setAttribute('width', '320');
+  videoElement.setAttribute('height', '180');
+  document.body.appendChild(videoElement); // Append to the body
+
+  const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
+  
+  // Listen for the target being found
+  listener.addEventListener('targetFound', () => onTargetFound(videoElement));
+}
+
+// Function to handle target found, plays the video, shows the buttons, etc.
+function onTargetFound(videoElement) {
   const playPauseBtn = document.getElementById('playPauseBtn');
   const cancelBtn = document.getElementById('cancelBtn');
   const UIoverlay = document.getElementById('UI-placement');
 
-  // Initially, listen for the target being found
-  listener.addEventListener('targetFound', onTargetFound);
+  // Show video and buttons
+  playPauseBtn.style.display = 'block';
+  cancelBtn.style.display = 'block';
+  videoElement.style.display = 'block';
+  UIoverlay.style.display = 'none';
 
-    // Function to handle target found
-  function onTargetFound() {
-      playPauseBtn.style.display = 'block';
-      cancelBtn.style.display = 'block';
-      video.style.display = 'block';
-      UIoverlay.style.display = 'none';
-      arSystem.stop(); //stopping AR system from scanning multiple targets once video is loaded.
-  }
+  // Stop the AR system from scanning multiple targets
+  arSystem.stop();
 
-  playPauseBtn.addEventListener('click', function() {
-    if (video.paused) {
-      video.play();
+  // Attach event listeners for play/pause button (for this specific video)
+  playPauseBtn.onclick = function() {
+    if (videoElement.paused) {
+      videoElement.play();
       playPauseBtn.textContent = 'Pause';
     } else {
-      video.pause();
+      videoElement.pause();
       playPauseBtn.textContent = 'Play';
     }
-  });
+  };
 
   // Handle the cancel action
-  cancelBtn.addEventListener('click', function() {
-      // Hide the video and buttons
-      playPauseBtn.style.display = 'none';
-      cancelBtn.style.display = 'none';
-      video.pause();
-      playPauseBtn.textContent = 'Play';
-      video.style.display = 'none';
-      UIoverlay.style.display = 'flex';
-      arSystem.start();
-  });
+  cancelBtn.onclick = function() {
+    playPauseBtn.style.display = 'none';
+    cancelBtn.style.display = 'none';
+    videoElement.pause();
+    playPauseBtn.textContent = 'Play';
+    videoElement.style.display = 'none';
+    UIoverlay.style.display = 'flex';
+    arSystem.start();
+  };
+} 
+
+  // const video = document.getElementById('video');
+  // const listener = document.querySelector('[mindar-image-target="targetIndex: 1"]');
+  // const playPauseBtn = document.getElementById('playPauseBtn');
+  // const cancelBtn = document.getElementById('cancelBtn');
+  // const UIoverlay = document.getElementById('UI-placement');
+
+  // // Initially, listen for the target being found
+  // listener.addEventListener('targetFound', onTargetFound);
+
+  //   // Function to handle target found
+  // function onTargetFound() {
+  //     playPauseBtn.style.display = 'block';
+  //     cancelBtn.style.display = 'block';
+  //     video.style.display = 'block';
+  //     UIoverlay.style.display = 'none';
+  //     arSystem.stop(); //stopping AR system from scanning multiple targets once video is loaded.
+  // }
+
+  // playPauseBtn.addEventListener('click', function() {
+  //   if (video.paused) {
+  //     video.play();
+  //     playPauseBtn.textContent = 'Pause';
+  //   } else {
+  //     video.pause();
+  //     playPauseBtn.textContent = 'Play';
+  //   }
+  // });
+
+  // // Handle the cancel action
+  // cancelBtn.addEventListener('click', function() {
+  //     // Hide the video and buttons
+  //     playPauseBtn.style.display = 'none';
+  //     cancelBtn.style.display = 'none';
+  //     video.pause();
+  //     playPauseBtn.textContent = 'Play';
+  //     video.style.display = 'none';
+  //     UIoverlay.style.display = 'flex';
+  //     arSystem.start();
+  // });
   
 });
 
