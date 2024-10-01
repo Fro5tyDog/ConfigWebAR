@@ -98,7 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
     
     // Listen for the target being found
-    listener.addEventListener('targetFound', () => onTargetFound(videoElement));
+    if (listener) {
+      // Listen for the target being found
+      listener.addEventListener('targetFound', () => onTargetFound(videoElement));
+    } else {
+      console.error(`Listener for targetIndex: ${videoConfig.targetIndex} not found`);
+    }
   }
 
   // Function to handle target found, plays the video, shows the buttons, etc.
