@@ -1,5 +1,5 @@
 // Fetch the config file to dynamically load the GLTF models
-// Fetch the config file
+// Fetch the config file  
 fetch('../config.json')
   .then(response => response.json())
   .then(config => {
