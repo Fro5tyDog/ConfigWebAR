@@ -17,7 +17,7 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
 });
 
 // Fetch configuration and update UI based on it
-fetch('/config.json')
+fetch('config.json')
   .then(response => response.json())
   .then(config => {
     const projects = config.projects;
