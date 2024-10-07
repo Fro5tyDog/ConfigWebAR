@@ -31,6 +31,19 @@
       "id": "tapImg2",
       "imgSrc": "./static/images/modelViewer-Thumbnails/thumbEx2.png"
     }
+  ],
+  "modelViewer3DModels": [
+    {
+      "thumbnailId": "tapImg1", 
+      "poster": "./static/images/modelViewer-Thumbnails/thumbEx1.png",
+      "src": "./static/3D-files/modelViewer/cube.gltf",
+      "alt": "A 3D model of a cube"
+    },
+    {
+      "thumbnailId": "tapImg2",
+      "poster": "./static/images/modelViewer-Thumbnails/thumbEx2.png",
+      "src": "./static/3D-files/modelViewer/cube.gltf",
+      "alt": "A 3D model of a cube"
+    }
   ]
 }
-  
