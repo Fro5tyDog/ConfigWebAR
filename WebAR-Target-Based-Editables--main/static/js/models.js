@@ -30,7 +30,8 @@ async function fetchConfig() {
     const modelsDiv = document.getElementById('modelsDiv');
     config.thumbnails.forEach((thumbnail, index) => {
       const imgElement = document.createElement('img');
-      imgElement.style.width = '55%'; // Adjust width as needed
+      imgElement.style.width = '50%'; // Adjust width as needed
+      imgElement.style.height = '50%'; // Adjust height as needed
       imgElement.id = `tapImg${index + 1}`; // Dynamically set ID
       imgElement.classList.add('tapImg');
       imgElement.src = thumbnail.imgSrc; // Set src from config
