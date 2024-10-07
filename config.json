@@ -21,6 +21,16 @@
       "targetIndex": 1
     }
   ],
-  "targetCount": 2
+  "targetCount": 2,
+  "thumbnails": [
+    {
+      "id": "tapImg1",
+      "imgSrc": "./static/images/modelViewer-Thumbnails/thumbEx1.png"
+    },
+    {
+      "id": "tapImg2",
+      "imgSrc": "./static/images/modelViewer-Thumbnails/thumbEx2.png"
+    }
+  ]
 }
   
