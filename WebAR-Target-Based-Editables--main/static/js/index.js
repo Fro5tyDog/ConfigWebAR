@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const gltfModel = document.createElement('a-gltf-model');
           gltfModel.setAttribute('src', `#${model.id}`);
           gltfModel.setAttribute('animation-mixer', ''); //
-          gltfModel.setAttribute('scale', '0.005, 0.005, 0.005'); //
+          gltfModel.setAttribute('scale', '0.05, 0.05, 0.05'); //
           entity.appendChild(gltfModel);
         }
 
