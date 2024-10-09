@@ -31,9 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (model) {
           const gltfModel = document.createElement('a-gltf-model');
           gltfModel.setAttribute('src', `#${model.id}`);
-          gltfModel.setAttribute('animation-mixer', '');
-          gltfModel.setAttribute('position', '0 0 0'); // Place the model at the origin for simplicity
-          gltfModel.setAttribute('scale', '0.15 0.15 0.15')
+          gltfModel.setAttribute('animation-mixer', ''); //
+          gltfModel.setAttribute('scale', '0.005, 0.005, 0.005'); //
           entity.appendChild(gltfModel);
         }
 
