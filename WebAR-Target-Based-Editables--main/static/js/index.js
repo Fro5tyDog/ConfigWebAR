@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (model) {
           const gltfModel = document.createElement('a-gltf-model');
           gltfModel.setAttribute('src', `#${model.id}`);
-          gltfModel.setAttribute('animation-mixer', ''); //
-          gltfModel.setAttribute('scale', '0.05, 0.05, 0.05'); //
+          gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
+          gltfModel.setAttribute('scale', '0.05, 0.05, 0.05'); // Try not to use this, rescale in a 3d design software like blender, this is here for debugging purposes as usually if you cannot see the model, it is either too big or too small. 
           entity.appendChild(gltfModel);
         }
 
