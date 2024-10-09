@@ -10,7 +10,7 @@
   "gltfModels": [
     {
       "id": "cube",
-      "src": "./static/3D-files/mindAR/cube.gltf",
+      "src": "./static/3D-files/mindAR/magnemite/scene.gltf",
       "targetIndex": 0
     }
   ],
