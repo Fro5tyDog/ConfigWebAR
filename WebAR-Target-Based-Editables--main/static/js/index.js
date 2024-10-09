@@ -38,11 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Step 3: Create video elements for each video in the config
-      setTimeout(() => {
-        videos.forEach(videoConfig => {
-          createVideo(videoConfig);
-        });
-      }, 100); // Small delay to ensure DOM is updated before attaching listeners
+      videos.forEach(videoConfig => {
+        createVideo(videoConfig);
+      });
     })
     .catch(error => {
       console.error('Error loading config:', error);
