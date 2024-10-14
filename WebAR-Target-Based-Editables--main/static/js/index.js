@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const gltfModel = document.createElement('a-gltf-model');
           gltfModel.setAttribute('src', `#${model.id}`);
           gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
-          gltfModel.setAttribute('scale', '0.05, 0.05, 0.05'); // Try not to use this, rescale in a 3d design software like blender, this is here for debugging purposes as usually if you cannot see the model, it is either too big or too small. 
+         // gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
           entity.appendChild(gltfModel);
         }
 
@@ -147,47 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
       arSystem.start();
     };
   } 
-
-
-  // const video = document.getElementById('video');
-  // const listener = document.querySelector('[mindar-image-target="targetIndex: 1"]');
-  // const playPauseBtn = document.getElementById('playPauseBtn');
-  // const cancelBtn = document.getElementById('cancelBtn');
-  // const UIoverlay = document.getElementById('UI-placement');
-
-  // // Initially, listen for the target being found
-  // listener.addEventListener('targetFound', onTargetFound);
-
-  //   // Function to handle target found
-  // function onTargetFound() {
-  //     playPauseBtn.style.display = 'block';
-  //     cancelBtn.style.display = 'block';
-  //     video.style.display = 'block';
-  //     UIoverlay.style.display = 'none';
-  //     arSystem.stop(); //stopping AR system from scanning multiple targets once video is loaded.
-  // }
-
-  // playPauseBtn.addEventListener('click', function() {
-  //   if (video.paused) {
-  //     video.play();
-  //     playPauseBtn.textContent = 'Pause';
-  //   } else {
-  //     video.pause();
-  //     playPauseBtn.textContent = 'Play';
-  //   }
-  // });
-
-  // // Handle the cancel action
-  // cancelBtn.addEventListener('click', function() {
-  //     // Hide the video and buttons
-  //     playPauseBtn.style.display = 'none';
-  //     cancelBtn.style.display = 'none';
-  //     video.pause();
-  //     playPauseBtn.textContent = 'Play';
-  //     video.style.display = 'none';
-  //     UIoverlay.style.display = 'flex';
-  //     arSystem.start();
-  // });
   
 });
 
