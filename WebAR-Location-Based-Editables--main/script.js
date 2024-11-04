@@ -593,7 +593,7 @@ function runCalculation(alpha) {
         direction.toFixed(0); // Round to the nearest degree
     } else {
         // keep this for player information.
-        consoleText.innerHTML = "Cannot calculate direction to target because geolocation data is not available.";
+        console.error("Cannot calculate direction to target because geolocation data is not available.");
     }
     
     
