@@ -33,9 +33,10 @@ body {
 
 /* Dark/Light Mode Toggle */
 .display-flex {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: fixed; /* Change from absolute to fixed */
+    top: 10px;       /* Position near the top */
+    right: 10px;     /* Position in the top-right corner */
+    z-index: 10;     /* Ensure it stays on top of other elements */
 }
 
 .display-mode-container {
@@ -100,7 +101,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin: 20px; /* Add margin to keep content away from screen edges */
     gap: 50px;
 }
 
@@ -110,7 +111,9 @@ body {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0px 4px 15px rgba(120, 182, 248, 0.2);
-    background-color: white
+    background-color: white;
+    max-width: 90vw; /* Keep the box within the screen width */
+    margin: 20px;    /* Add margin around each container */
 }
 
 .app-icon {
