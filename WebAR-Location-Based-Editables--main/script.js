@@ -550,9 +550,6 @@ const handleOrientationEvent = (rotateDegrees) => {
 
     // Display the alpha value as an example
     // document.getElementById("start-button").innerHTML = `${rotateDegrees}`;
-
-    // Start the UI updates
-    updateUI();
 };
 
 // Update runCalculation to accept alpha as a parameter
@@ -589,7 +586,8 @@ function runCalculation(alpha) {
     
         direction = (alpha - bearing) % 360;
 
-        
+        // Start the UI updates
+        updateUI();
         // consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
 
         direction.toFixed(0); // Round to the nearest degree
