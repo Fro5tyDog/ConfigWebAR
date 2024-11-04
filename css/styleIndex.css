@@ -46,6 +46,7 @@ body {
     padding: 10px;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    z-index: 15;
 }
 
 .display-mode-container img {
@@ -53,10 +54,37 @@ body {
     cursor: pointer;
 }
 
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Anek Telugu Light', sans-serif;
+    background-color: #e4e4e4;
+}
+
+.light {
+    background-color: #e4e4e4;
+}
+
+.dark {
+    background-color: #282828;
+    color: white;
+}
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
 /* Title */
 .title-flex {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .title-container {
@@ -64,106 +92,116 @@ body {
     font-size: 50px;
     line-height: 1.2;
     word-break: break-word;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow effect for the title */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* AR Apps Grid */
-.all-apps-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 30px 0;
-    margin-top: calc(50vh - 200px); /* Position apps closer to the halfway point */
-    flex-wrap: wrap;
-}
-
-.app-icon-border {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.app-container {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #b7b7b7;
-    padding: 30px;
+/* Main Content */
+.main-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 4px 15px rgba(120, 182, 248, 0.288);  /* Blue shadow effect */
-    transition: transform 0.2s ease;
+    margin-top: 50px;
+    gap: 50px;
 }
 
-.app-container:hover {
-    transform: scale(1.05); /* Slight scale effect on hover */
+.content-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(120, 182, 248, 0.2);
+    background-color: white
 }
 
-.app-container img {
-    width: 85%;
-    height: 85%;
+.app-icon {
+    flex-shrink: 0;
+    margin-right: 20px;
 }
 
-h2 {
-    margin: 10px 0;
-    font-size: 20px;
+.app-icon img {
+    width: 100px;
+    height: 100px;
 }
 
-p {
+.error-icon img {
+    width: 300px;
+    height: 300px;
+}
+
+.content-box {
+    max-width: 400px;
+    text-align: left;
+}
+
+.content-box h2 {
+    font-family: 'Anek Telugu SemiBold', sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.content-box p {
     font-size: 16px;
+    margin: 5px 0;
 }
+
+.cta-button {
+    display: inline-block;
+    text-align: center;
+    background-color: #8FCD84;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #76B76A;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
     .title-container {
-        font-size: 45px;
+        font-size: 40px;
         margin: 0 20px;
     }
 
-    .all-apps-container {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
+    .app-icon img {
+        width: 80px;
+        height: 80px;
     }
 
-    .app-icon-border {
-        margin-bottom: 50px;
-    }
-
-    .app-container {
-        width: 180px;
-        height: 180px;
-    }
-    body{
-        overflow: scroll;
+    .content-box {
+        max-width: 100%;
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .title-container {
-        font-size: 42px;
+        font-size: 32px;
     }
 
-    .app-container {
-        width: 160px;
-        height: 160px;
-        box-shadow: 0px 3px 10px rgba(0, 122, 255, 0.4);  /* Adjust blue shadow for smaller screens */
+    .app-icon img {
+        width: 70px;
+        height: 70px;
     }
 
-    .app-container img {
-        width: 75%;
-        height: 75%;
-    }
-    body{
-        overflow: scroll;
+    .content-box {
+        font-size: 14px;
     }
 }
-
-/* Disabled app containers */
-.app-container.disabled {
-    pointer-events: none; /* Prevent interaction */
-    background-color: rgb(255, 0, 0); /* Grey out */
-    opacity: 0.6; /* Optional: Semi-transparent */
-}
-
-
   
+.disabled {
+    display: none !important;
+}

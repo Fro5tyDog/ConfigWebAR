@@ -1,7 +1,7 @@
 {
   "projects": {
     "locationBasedAR": {
-      "enabled": true
+      "enabled": false
     },
     "targetBasedAR": {
       "enabled": true

@@ -16,37 +16,46 @@
     </div>
 
     <!-- Title -->
-    <div class="title-flex">
+    <div class="title-flex fade-in">
         <h1 class="title-container">Web AR Projects</h1>
     </div>
 
-    <!-- AR Apps -->
-    <div class="all-apps-container">
+    <!-- Main Content -->
+    <div class="main-content fade-in">
         <!-- Location-based WebAR -->
-        <div class="app-icon-border">
-            <div class="app-container" id="locationBasedAR">
-                <a href="WebAR-Location-Based-Editables--main/index.html">
-                    <img src="assets/images/appIcons/location-based-AR.png" alt="Location-based WebAR">
-                </a>
+        <div class="content-container" id="locationBasedAR">
+            <div class="app-icon">
+                <img src="assets/images/appIcons/location-based-AR.png" alt="Location-based WebAR">
             </div>
-            <h2>Location-based WebAR</h2>
-            <p id="locationText">Tap the icon to learn more</p>  
+            <div class="content-box">
+                <h2>Location-Based AR</h2>
+                <a href="WebAR-Location-Based-Editables--main/index.html" class="cta-button">Take me there</a>
+                <p>Experience your world with a new AR lens!</p>
+                <p>Brought to you by IGSO @ LTA</p>
+            </div>
         </div>
 
         <!-- Target-based WebAR -->
-        <div class="app-icon-border">
-            <div class="app-container" id="targetBasedAR">
-                <a href="WebAR-Target-Based-Editables--main/index.html">
-                    <img src="assets/images/appIcons/target-based-AR.png" alt="Target-based WebAR">
-                </a>
+        <div class="content-container" id="targetBasedAR">
+            <div class="app-icon">
+                <img src="assets/images/appIcons/target-based-AR.png" alt="Target-based WebAR">
             </div>
-            <h2>Target-based WebAR</h2>
-            <p id="targetText">Tap the icon to learn more</p>
+            <div class="content-box">
+                <h2>Target-based AR</h2>
+                <a href="WebAR-Target-Based-Editables--main/index.html" class="cta-button">Take me there</a>
+                <p>Brings characters to life right before you!</p>
+                <p>Brought to you by IGSO @ LTA</p>
+            </div>
+        </div>
+
+        <!-- Error (Loaded if both are enabled) -->
+        <div class="content-container" id="error">
+            <div class="error-icon">
+                <img src="assets/images/appIcons/error_homescreen.png" alt="Target-based WebAR">
+            </div>
         </div>
     </div>
 
-    <!-- script -->
     <script src="js/index.js"></script>
 </body>
 </html>
-  
