@@ -193,7 +193,7 @@ function thumbnailClick(event){
 async function selectNewModel(name){
 
     const locationDisplay = document.getElementById('location-display');
-    locationDisplay.innerHTML = `Calculating distance to ${name}`;
+    locationDisplay.innerHTML = `Locating ${name}`;
     // call function to select target
     selectedTarget(name);
 }
@@ -473,11 +473,11 @@ function updateTextUIAndModelVisibility() {
 
         // change text depending on distance between player and model
         if(targetDetails.tooClose == false && targetDetails.tooFar == false){
-            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed(2)} meters to ${targetDetails.targetName}`;
+            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed(1)}m to ${targetDetails.targetName}`;
         } else if (targetDetails.tooClose == true && targetDetails.tooFar == false) {
             locationDisplay.innerHTML = `Too close to ${targetDetails.targetName}!`;
         } else if (targetDetails.tooClose == false && targetDetails.tooFar == true) {
-            locationDisplay.innerHTML = `Too far from ${targetDetails.targetName}!: ${targetDetails.distanceToTarget.toFixed(2)} meters`;
+            locationDisplay.innerHTML = `Too far from ${targetDetails.targetName}: ${targetDetails.distanceToTarget.toFixed(1)}m away`;
         } else{
             locationDisplay.innerHTML = "No models found!";
         }
@@ -549,7 +549,7 @@ const handleOrientationEvent = (rotateDegrees) => {
     runCalculation(rotateDegrees);
 
     // Display the alpha value as an example
-    document.getElementById("start-button").innerHTML = `${rotateDegrees}`;
+    // document.getElementById("start-button").innerHTML = `${rotateDegrees}`;
 
     // Start the UI updates
     updateUI();
@@ -590,10 +590,11 @@ function runCalculation(alpha) {
         direction = (alpha - bearing) % 360;
 
         
-        consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
+        // consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
 
         direction.toFixed(0); // Round to the nearest degree
     } else {
+        // keep this for player information.
         consoleText.innerHTML = "Cannot calculate direction to target because geolocation data is not available.";
     }
     
