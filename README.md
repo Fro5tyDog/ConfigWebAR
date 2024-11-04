@@ -10,6 +10,8 @@ Download the files by [forking](https://docs.github.com/en/pull-requests/collabo
 
 If you wish to run the application on a local host, you may use [git clone](https://github.com/git-guides/git-clone) or download the zipped version of the repository. 
 
+**NOTE THAT IF YOU RUN ON LOCAL HOST, YOU MUST HAVE A HTTPS CONNECTION**
+
 ```bash
 git clone https://github.com/Fro5tyDog/ConfigWebAR.git
 ```
