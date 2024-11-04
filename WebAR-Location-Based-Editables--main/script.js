@@ -358,7 +358,6 @@ function selectedTarget(name){
 
 // Application loop function that calls the retrieve player data and relative position. 
 function appLoop() {
-    // console.log("starting app loop");
     // Retrieve player position and relative position to closest model.
     getPlayerPosition(findDistanceRelativeToModel);
 
@@ -524,10 +523,8 @@ function toDegrees(radians) {
 
 // ##################################################################################################
 var current = { latitude: null, longitude: null };
-// var target = { latitude: 0, longitude: 0 };
 var lastAlpha = 0;
 let direction = 0;
-// const geolocationOptions = { enableHighAccuracy: true };
 // function to initialize geolocation and device orientation. runs automatically
 function init() {
     // navigator.geolocation.watchPosition(setCurrentPosition, null, geolocationOptions);
@@ -548,8 +545,6 @@ const handleOrientationEvent = (rotateDegrees) => {
     // Call runCalculation with the fetched alpha value
     runCalculation(rotateDegrees);
 
-    // Display the alpha value as an example
-    // document.getElementById("start-button").innerHTML = `${rotateDegrees}`;
 };
 
 // Update runCalculation to accept alpha as a parameter
