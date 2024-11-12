@@ -30,7 +30,7 @@ function renderModels(){
             let scene = document.querySelector('a-scene');
 
             // fetch json to create models.
-            fetch('./model_positions.json')
+            fetch('get-config.php')
            .then(response => response.json())
            .then(data => {
                 console.log('JSON loaded', data);

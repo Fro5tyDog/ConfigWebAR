@@ -20,6 +20,7 @@ body {
     font-family: 'Anek Telugu Light', sans-serif;
     background-color: #e4e4e4;
     overflow: hidden; 
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .light {
@@ -114,6 +115,13 @@ body {
     background-color: white;
     max-width: 90vw; /* Keep the box within the screen width */
     margin: 20px;    /* Add margin around each container */
+}
+
+.hidden {
+    display: none;
+}
+.content-container.hidden {
+    display: none;
 }
 
 .app-icon {

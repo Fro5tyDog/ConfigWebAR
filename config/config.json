@@ -4,7 +4,7 @@
       "enabled": true
     },
     "targetBasedAR": {
-      "enabled": true
+      "enabled": false
     }
   },
   "gltfModels": [

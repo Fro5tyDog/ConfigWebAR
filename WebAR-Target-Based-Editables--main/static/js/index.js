@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 // Fetch the config file to dynamically load the GLTF models
 // Fetch the config file  
-  fetch('../config.json')
+  fetch('../get-config.php')
     .then(response => response.json())
     .then(config => {
       const videos = config.videos;
