@@ -472,7 +472,7 @@ function updateTextUIAndModelVisibility() {
 
         // change text depending on distance between player and model
         if(targetDetails.tooClose == false && targetDetails.tooFar == false){
-            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed(1)}m to ${targetDetails.targetName}`;
+            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed()}m to ${targetDetails.targetName}`;
         } else if (targetDetails.tooClose == true && targetDetails.tooFar == false) {
             locationDisplay.innerHTML = `Too close to ${targetDetails.targetName}!`;
         } else if (targetDetails.tooClose == false && targetDetails.tooFar == true) {
