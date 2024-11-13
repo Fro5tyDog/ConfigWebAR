@@ -579,7 +579,7 @@ function runCalculation(alpha) {
         const bearing = calcBearing(lat1, lon1, lat2, lon2);
         // Calculate the direction by adjusting the bearing with the phone's orientation
     
-        direction = (alpha - bearing) % 360;
+        direction = (alpha + bearing + 360) % 360;
 
         // Start the UI updates
         updateUI();
