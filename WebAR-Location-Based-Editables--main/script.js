@@ -580,11 +580,12 @@ function runCalculation(alpha) {
         // Calculate the direction by adjusting the bearing with the phone's orientation
     
         direction = (alpha + bearing + 360) % 360;
+        // direction = (alpha - bearing) % 360
 
         // Start the UI updates
         updateUI();
-        consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
-        // consoleText.innerHTML = ``;
+        // consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
+        consoleText.innerHTML = ``;
         direction.toFixed(0); // Round to the nearest degree
     } else {
         // keep this for player information.
