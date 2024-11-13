@@ -583,7 +583,7 @@ function runCalculation(alpha) {
 
         // Start the UI updates
         updateUI();
-        // consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
+        consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
         consoleText.innerHTML = ``;
         direction.toFixed(0); // Round to the nearest degree
     } else {
