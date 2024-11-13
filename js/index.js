@@ -62,10 +62,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // Determine which container(s) to show
           if (projects.locationBasedAR.enabled && projects.targetBasedAR.enabled) {
               errorContainer.classList.remove('hidden');
+              errorContainer.classList.add('active');
           } else if (projects.locationBasedAR.enabled) {
               locationBasedContainer.classList.remove('hidden');
+              locationBasedContainer.classList.add('active');
           } else if (projects.targetBasedAR.enabled) {
               targetBasedContainer.classList.remove('hidden');
+              targetBasedContainer.classList.add('active');
           } else {
               console.log('No AR project is enabled in the configuration.');
           }

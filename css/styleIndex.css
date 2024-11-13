@@ -107,7 +107,7 @@ body {
 }
 
 .content-container {
-    display: flex;
+    display: none;
     align-items: center;
     padding: 20px;
     border-radius: 15px;
@@ -122,6 +122,9 @@ body {
 }
 .content-container.hidden {
     display: none;
+}
+.content-container.active {
+    display: flex;
 }
 
 .app-icon {
