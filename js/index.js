@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // Fetch configuration and update UI based on it
-  fetch('get-config.php')
+  fetch('./config/config.json')
       .then(response => response.json())
       .then(config => {
           const projects = config.projects;

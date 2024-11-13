@@ -1,7 +1,7 @@
 // Function to fetch the config.json file
 async function fetchConfig() {
     try {
-      const response = await fetch('../get-config.php');
+      const response = await fetch('../config/config.json');
       const config = await response.json();
       return config;
     } catch (error) {
