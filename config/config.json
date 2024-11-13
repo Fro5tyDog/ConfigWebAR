@@ -1,10 +1,10 @@
 {
   "projects": {
     "locationBasedAR": {
-      "enabled": false
+      "enabled": true
     },
     "targetBasedAR": {
-      "enabled": true
+      "enabled": false
     }
   },
   "gltfModels": [
