@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Step 2: Create the <a-entity> tags for each target index after assets are ready
       for (let i = 0; i < targetCount; i++) {
+        console.log(models);
+        console.log(videos);
         const entity = document.createElement('a-entity');
         entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
         entity.classList.add(`target-index-${i}`);
