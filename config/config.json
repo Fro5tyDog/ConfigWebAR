@@ -12,13 +12,13 @@
       "enabled": true
     },
     "models": {
-      "enabled": false
+      "enabled": true
     }
   },
   "gltfModels": [
     {
       "id": "cube",
-      "src": "./static/3D-files/mindAR/magnemite/scene.gltf",
+      "src": "./static/3D-files/mindAR/HDB/HDB.gltf",
       "targetIndex": 0
     }
   ],
