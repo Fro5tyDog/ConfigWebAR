@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
       let models;
       if(displaytypes.videos.enabled && displaytypes.models.enabled) {
         videos = config.videos;
-        models = config.models;
+        models = config.gltfModels;
       } else if (displaytypes.videos.enabled && !displaytypes.models.enabled) {
         videos = config.videos;
         models = null;
       } else if (!displaytypes.videos.enabled && displaytypes.models.enabled){
         videos = null;
-        models = config.models;
+        models = config.gltfModels;
       }
       
       // Step 2: Create the <a-entity> tags for each target index after assets are ready
