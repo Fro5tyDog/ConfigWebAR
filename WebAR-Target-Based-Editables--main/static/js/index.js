@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
       let videos;
       let models;
       if(displaytypes.videos.enabled && displaytypes.models.enabled) {
-        const videos = config.videos;
-        const models = config.models;
+        videos = config.videos;
+        models = config.models;
       } else if (displaytypes.videos.enabled && !displaytypes.models.enabled) {
-        const videos = config.videos;
-        const models = null;
+        videos = config.videos;
+        models = null;
       } else if (!displaytypes.videos.enabled && displaytypes.models.enabled){
-        const videos = null;
-        const models = config.models;
+        videos = null;
+        models = config.models;
       }
       
       // Step 2: Create the <a-entity> tags for each target index after assets are ready
