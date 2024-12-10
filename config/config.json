@@ -9,7 +9,7 @@
   },
   "displaytypes": {
     "videos": {
-      "enabled": true
+      "enabled": false
     },
     "models": {
       "enabled": true
