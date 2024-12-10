@@ -1,48 +1,62 @@
 document.addEventListener("DOMContentLoaded", function () {
 // Fetch the config file to dynamically load the GLTF models
 // Fetch the config file  
-  fetch('../get-config.php')
+  fetch('../config/config.json')
     .then(response => response.json())
     .then(config => {
-      const videos = config.videos;
-      const models = config.gltfModels;
+      const displaytypes = config.displaytypes;
       const targetCount = config.targetCount;
-
-      const scene = document.querySelector('a-scene'); // Assuming a-scene is already in your HTML
+      const scene = document.querySelector('a-scene');
       const assetsContainer = document.getElementById('gltf-assets-container');
-
-      // Step 1: Dynamically create <a-asset-item> elements for GLTF models
-      models.forEach(model => {
-        const assetItem = document.createElement('a-asset-item');
-        assetItem.setAttribute('id', model.id);
-        assetItem.setAttribute('src', model.src);
-        assetsContainer.appendChild(assetItem);
-      });
-
+      let videos;
+      let models;
+      if(displaytypes.videos.enabled && displaytypes.models.enabled) {
+        const videos = config.videos;
+        const models = config.models;
+      } else if (displaytypes.videos.enabled && !displaytypes.models.enabled) {
+        const videos = config.videos;
+        const models = null;
+      } else if (!displaytypes.videos.enabled && displaytypes.models.enabled){
+        const videos = null;
+        const models = config.models;
+      }
+      
       // Step 2: Create the <a-entity> tags for each target index after assets are ready
       for (let i = 0; i < targetCount; i++) {
         const entity = document.createElement('a-entity');
         entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
         entity.classList.add(`target-index-${i}`);
 
-        // Find the model assigned to this target index
-        const model = models.find(model => model.targetIndex === i);
+        if(models != null){
+          // Step 1: Dynamically create <a-asset-item> elements for GLTF models
+          models.forEach(model => {
+            const assetItem = document.createElement('a-asset-item');
+            assetItem.setAttribute('id', model.id);
+            assetItem.setAttribute('src', model.src);
+            assetsContainer.appendChild(assetItem);
+          });
 
-        if (model) {
-          const gltfModel = document.createElement('a-gltf-model');
-          gltfModel.setAttribute('src', `#${model.id}`);
-          gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
-         // gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
-          entity.appendChild(gltfModel);
-        }
+          // Find the model assigned to this target index
+          const model = models.find(model => model.targetIndex === i);
 
+          if (model) {
+            const gltfModel = document.createElement('a-gltf-model');
+            gltfModel.setAttribute('src', `#${model.id}`);
+            gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
+          // gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
+            entity.appendChild(gltfModel);
+          }
+        } 
+        
         scene.appendChild(entity);
       }
 
       // Step 3: Create video elements for each video in the config
-      videos.forEach(videoConfig => {
-        createVideo(videoConfig);
-      });
+      if(videos != null){
+        videos.forEach(videoConfig => {
+          createVideo(videoConfig);
+        });
+      }
     })
     .catch(error => {
       console.error('Error loading config:', error);
