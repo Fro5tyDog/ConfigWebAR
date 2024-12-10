@@ -9,10 +9,10 @@
   },
   "displaytypes": {
     "videos": {
-      "enabled": false
+      "enabled": true
     },
     "models": {
-      "enabled": true
+      "enabled": false
     }
   },
   "gltfModels": [
