@@ -8,16 +8,16 @@ let modelsArray = [];
 async function initializeMyApp(){
 
     // 1.
-    const modelRender = await renderModels();
+    await renderModels();
     
     // 2.
-    const dropdownRender = await createDropdownContainer();
+    await createDropdownContainer();
 
     // 3.
-    const mapRender = await mapRenderImage();
+    await mapRenderImage();
 
     // 4.
-    const startUpScreen = await createStartScreen();
+    await createStartScreen();
 
 }
 
@@ -30,7 +30,7 @@ function renderModels(){
             let scene = document.querySelector('a-scene');
 
             // fetch json to create models.
-            fetch('./config/model_positions.json')
+            fetch('get-config.php')
            .then(response => response.json())
            .then(data => {
                 console.log('JSON loaded', data);
@@ -69,10 +69,6 @@ function renderModels(){
                     // append to scene first before checking if it's loaded
                     scene.appendChild(model);
 
-                    model.addEventListener('model-loaded', () => {
-                        console.log('model loaded');
-                    })
-
                     // Define an object with properties for each model
                     let modelObject = {
                         name: modelSeparated.name,
@@ -88,7 +84,7 @@ function renderModels(){
             }
         } 
         catch(error){
-            reject(error);
+            reject(new Error(`Error loading the JSON data: ${error.message}`));         
         }
     })
 }
@@ -107,7 +103,7 @@ function renderModelVisibility(){
         });
     } 
     catch(error){
-        console.error(error);
+        reject(new Error(`Error rendering the models: ${error.message}`));         
     }
 };
 
@@ -156,9 +152,9 @@ function createDropdownContainer(){
             resolve(true);
         }
         catch(error){
-            reject(error);
+            reject(new Error(`Error creating drop down thumbnails: ${error.message}`));         
         }
-        
+          
     });
 
 }
@@ -247,8 +243,7 @@ function mapRenderImage(){
             resolve(true);
         }
         catch(error){
-            console.error(error);
-            reject(error);
+            reject(new Error(`Error opening the map: ${error.message}`));         
         }
     })
 }
@@ -290,7 +285,8 @@ function createStartScreen(){
             resolve(true);
         } 
         catch(error){
-            reject(error);
+            reject(new Error(`Error creating start screen: ${error.message}`));         
+
         }   
     })
 }
@@ -472,7 +468,7 @@ function updateTextUIAndModelVisibility() {
 
         // change text depending on distance between player and model
         if(targetDetails.tooClose == false && targetDetails.tooFar == false){
-            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed()}m to ${targetDetails.targetName}`;
+            locationDisplay.innerHTML = `${targetDetails.distanceToTarget.toFixed(1)}m to ${targetDetails.targetName}`;
         } else if (targetDetails.tooClose == true && targetDetails.tooFar == false) {
             locationDisplay.innerHTML = `Too close to ${targetDetails.targetName}!`;
         } else if (targetDetails.tooClose == false && targetDetails.tooFar == true) {
@@ -482,23 +478,23 @@ function updateTextUIAndModelVisibility() {
         }
     } 
     catch(error){
-        reject(error);
+        reject(new Error(`loading models: ${error.message}`));      
     }  
 }
 
 // Function to calculate the distance between two points in m.
 function calculateDistance(lat1,lon1,lat2,lon2){
     try{
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1); 
-        var a = 
+        let R = 6371; // Radius of the earth in km
+        let dLat = deg2rad(lat2-lat1);  // deg2rad below
+        let dLon = deg2rad(lon2-lon1); 
+        let a = 
             Math.sin(dLat/2) * Math.sin(dLat/2) +
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
             Math.sin(dLon/2) * Math.sin(dLon/2)
             ; 
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-        var d = R * c; // Distance in km
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        let d = R * c; // Distance in km
         return(d * 1000); // send distance in meters
         
         function deg2rad(deg) {
@@ -522,8 +518,8 @@ function toDegrees(radians) {
 
 
 // ##################################################################################################
-var current = { latitude: null, longitude: null };
-var lastAlpha = 0;
+let current = { latitude: null, longitude: null };
+let lastAlpha = 0;
 let direction = 0;
 // function to initialize geolocation and device orientation. runs automatically
 function init() {
@@ -572,15 +568,14 @@ function runCalculation(alpha) {
     const lon1 = current.longitude;
     const lat2 = targetDetails.lat;
     const lon2 = targetDetails.lng;
-    consoleText = document.getElementById('console-text');
+    const consoleText = document.getElementById('console-text');
 
     // Calculate the bearing to the target
     if(lat1 != null && lon1 != null && lat2 != null && lon2 != null){
         const bearing = calcBearing(lat1, lon1, lat2, lon2);
         // Calculate the direction by adjusting the bearing with the phone's orientation
     
-        direction = (alpha + bearing + 360) % 360;
-        // direction = (alpha - bearing) % 360
+        direction = (alpha - bearing) % 360;
 
         // Start the UI updates
         updateUI();

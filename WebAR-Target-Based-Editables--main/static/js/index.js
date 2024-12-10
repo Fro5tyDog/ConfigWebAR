@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 // Fetch the config file to dynamically load the GLTF models
 // Fetch the config file  
-  fetch('../config/config.json')
+  fetch('../get-config.php')
     .then(response => response.json())
     .then(config => {
       const videos = config.videos;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const gltfModel = document.createElement('a-gltf-model');
           gltfModel.setAttribute('src', `#${model.id}`);
           gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
-          gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  // Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
+         // gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
           entity.appendChild(gltfModel);
         }
 
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Update rotation every 24 frames (adjust as needed)
       if (this.frameCount % 24 === 0) {
         // Assuming 'this.el' is the entity you want to rotate to match the camera's rotation
-        var cameraEl = document.querySelector('a-camera'); // Get the camera entity
+        let cameraEl = document.querySelector('a-camera'); // Get the camera entity
         if (cameraEl) {
           // Copy the camera's quaternion to the entity
           this.el.object3D.quaternion.copy(cameraEl.object3D.quaternion);

@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web AR Projects</title>
+    <title>LTA WebAR Projects</title>
     <link rel="stylesheet" href="css/styleIndex.css">
 </head>
 <body class="light">
-
     <!-- Dark/Light Mode Toggle -->
     <div class="display-flex">
         <div class="display-mode-container" id="theme-toggle">
             <img src="assets/images/UI/dark-mode.png" alt="Dark Mode">
         </div>
     </div>
-
+  
     <!-- Title -->
-    <div class="title-flex fade-in">
-        <h1 class="title-container">Web AR Projects</h1>
+    <div class="title-flex">
+        <h1 class="title-container">WebAR Portal</h1>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content fade-in">
+    <div class="main-content">
         <!-- Location-based WebAR -->
-        <div class="content-container" id="locationBasedAR">
+        <div class="content-container hidden" id="locationBasedAR">
             <div class="app-icon">
                 <img src="assets/images/appIcons/location-based-AR.png" alt="Location-based WebAR">
             </div>
@@ -31,12 +30,11 @@
                 <h2>Location-Based AR</h2>
                 <a href="WebAR-Location-Based-Editables--main/index.html" class="cta-button">Take me there</a>
                 <p>Experience your world with a new AR lens!</p>
-                <p>Brought to you by IGSO @ LTA</p>
             </div>
         </div>
 
         <!-- Target-based WebAR -->
-        <div class="content-container" id="targetBasedAR">
+        <div class="content-container hidden" id="targetBasedAR">
             <div class="app-icon">
                 <img src="assets/images/appIcons/target-based-AR.png" alt="Target-based WebAR">
             </div>
@@ -44,17 +42,22 @@
                 <h2>Target-based AR</h2>
                 <a href="WebAR-Target-Based-Editables--main/index.html" class="cta-button">Take me there</a>
                 <p>Brings characters to life right before you!</p>
-                <p>Brought to you by IGSO @ LTA</p>
             </div>
         </div>
 
-        <!-- Error (Loaded if both are enabled) -->
-        <div class="content-container" id="error">
+        <!-- Error (Displayed if both are enabled) -->
+        <div class="content-container hidden" id="error">
             <div class="error-icon">
-                <img src="assets/images/appIcons/error_homescreen.png" alt="Target-based WebAR">
+                <img src="assets/images/appIcons/error_homescreen.png" alt="Error">
             </div>
         </div>
     </div>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p>Brought to you by IGSO @ LTA</p>
+    </footer>
 
     <script src="js/index.js"></script>
 </body>

@@ -1,16 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head id="head-index">
+    <title>Target-based AR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <!-- <script src="./aframe-gif-shader-master/dist/aframe-gif-shader.min.js"></script> -->
     <link rel="stylesheet" type="text/css" href="./static/css/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'> 
   </head>
   <body id="body-index" style="margin: 0; background-color: black;">
-       <!-- id="UI-overlay" fixes the issue where the AR content gets cutoff at where the buttons are -->
       <!-- display flex is to prevent the UI overlay from disappearing when displaying AR content. Can be removed -->
       <div id="UI-overlay" style="max-height: 100%; max-width: 100%;">
         <div id="UI-placement">
@@ -26,12 +26,16 @@
           
           <div id="iconsDiv">
             <div class="btnDiv">
-              <img id="loadModelsButton" src="./static/images/icons/View-Models-button.png" alt="Click to load more Models" onClick="location.href='./models.html'">
+              <a href="./models.html">
+                  <img id="loadModelsButton" src="./static/images/icons/View-Models-button.png" alt="Click to load more Models">
+              </a>
               <p class="btnP">Add Models</p>
             </div>
             <p id="pDistance"></p>
             <div class="btnDiv">
-              <img id="moreInfoButton" src="./static/images/icons/More-Info-Button.png" alt="Info Button" onClick="console.log('info button clicked')">
+              <a href="./models.html">
+                <img id="moreInfoButton" src="./static/images/icons/More-Info-Button.png" alt="Info Button">
+              </a>
               <p class="btnP">More Info</p>
             </div>          
           </div>
