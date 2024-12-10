@@ -24,7 +24,9 @@
   }
 
   #scanBoxP{
+    /* font-family: Roboto;  */
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-size: 4vw;  */
     font-size: 1.1em;
     font-weight: 600;
     color: rgb(225, 216, 216);
@@ -51,6 +53,7 @@
   }
 
   .btnP{
+    /* font-family: Roboto;  */
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 3vw; 
     font-weight: 600;
@@ -111,7 +114,9 @@
   }
 
   #scanBoxP{
+    /* font-family: Roboto;  */
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-size: 2.5vw; */
     font-size: 1.45em;
     font-weight: 600;
     color: rgb(225, 216, 216);
@@ -135,9 +140,11 @@
     flex-direction: row;
     margin-top: 9vh;
     width: 91%;
+    display: none;
   }
 
   .btnP{
+    /* font-family: Roboto;  */
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 3vw; 
     font-weight: 600;
@@ -185,6 +192,7 @@
 }
 
 #headerTop{
+  /* font-family: Roboto; */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 6.7vw;
   margin-right: 9%; 
