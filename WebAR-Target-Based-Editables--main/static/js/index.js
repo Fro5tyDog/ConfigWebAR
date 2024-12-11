@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
           createVideo(videoConfig);
         });
       }
+      arSystem.stop();
+      arSystem.start();
     })
     .catch(error => {
       console.error('Error loading config:', error);
