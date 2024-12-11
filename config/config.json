@@ -18,7 +18,7 @@
   "gltfModels": [
     {
       "id": "cube",
-      "src": "./static/3D-files/mindAR/HDB/HDB.gltf",
+      "src": "./static/3D-files/mindAR/City/CityDemo.gltf",
       "targetIndex": 0
     }
   ],
