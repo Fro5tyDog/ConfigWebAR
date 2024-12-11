@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch the config file to dynamically load the GLTF models
+// Fetch the config file to dynamically load the GLTF models
+// Fetch the config file  
   fetch('../config/config.json')
     .then(response => response.json())
     .then(config => {
@@ -7,46 +8,53 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetCount = config.targetCount;
       const scene = document.querySelector('a-scene');
       const assetsContainer = document.getElementById('gltf-assets-container');
-      let videos = null;
-      let models = null;
-
-      if (displaytypes.videos.enabled && displaytypes.models.enabled) {
+      let videos;
+      let models;
+      if(displaytypes.videos.enabled && displaytypes.models.enabled) {
         videos = config.videos;
         models = config.gltfModels;
-      } else if (displaytypes.videos.enabled) {
+      } else if (displaytypes.videos.enabled && !displaytypes.models.enabled) {
         videos = config.videos;
-      } else if (displaytypes.models.enabled) {
+        models = null;
+      } else if (!displaytypes.videos.enabled && displaytypes.models.enabled){
+        videos = null;
         models = config.gltfModels;
       }
+      
+      // Step 2: Create the <a-entity> tags for each target index after assets are ready
+      for (let i = 0; i < targetCount; i++) {
+        console.log(models);
+        console.log(videos);
+        const entity = document.createElement('a-entity');
+        entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
+        entity.classList.add(`target-index-${i}`);
 
-      // Dynamically create <a-asset-item> elements for GLTF models and wait for them to load
-      if (models != null) {
-        let loadedModelsCount = 0;
-        models.forEach(model => {
-          const assetItem = document.createElement('a-asset-item');
-          assetItem.setAttribute('id', model.id);
-          assetItem.setAttribute('src', model.src);
-
-          // Listen for asset-loaded event
-          assetItem.addEventListener('loaded', () => {
-            loadedModelsCount++;
-            console.log(`${model.id} loaded successfully.`);
-
-            // When all models are loaded, create the entities
-            if (loadedModelsCount === models.length) {
-              console.log('All models loaded. Creating entities...');
-              createEntitiesForTargets(targetCount, models);
-            }
+        if(models != null){
+          // Step 1: Dynamically create <a-asset-item> elements for GLTF models
+          models.forEach(model => {
+            const assetItem = document.createElement('a-asset-item');
+            assetItem.setAttribute('id', model.id);
+            assetItem.setAttribute('src', model.src);
+            assetsContainer.appendChild(assetItem);
           });
 
-          assetsContainer.appendChild(assetItem);
-        });
-      } else {
-        createEntitiesForTargets(targetCount, null); // Proceed if no models are specified
+          // Find the model assigned to this target index
+          const model = models.find(model => model.targetIndex === i);
+
+          if (model) {
+            const gltfModel = document.createElement('a-gltf-model');
+            gltfModel.setAttribute('src', `#${model.id}`);
+            gltfModel.setAttribute('animation-mixer', ''); //if you only want one animation to play, remove any unnecessary animations in the gltf itself.
+          // gltfModel.setAttribute('scale', '0.05, 0.05, 0.05');  Try not to use this, rescale your models in a 3d design software like blender, this is here for debugging purposes because if you cannot see the model, it is either too big or too small. 
+            entity.appendChild(gltfModel);
+          }
+        } 
+        
+        scene.appendChild(entity);
       }
 
-      // Create video elements for each video in the config
-      if (videos != null) {
+      // Step 3: Create video elements for each video in the config
+      if(videos != null){
         videos.forEach(videoConfig => {
           createVideo(videoConfig);
         });
@@ -54,33 +62,39 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => {
       console.error('Error loading config:', error);
-    });
+  });
 
-  // Function to create entities for each target index
-  function createEntitiesForTargets(targetCount, models) {
-    const scene = document.querySelector('a-scene');
-    for (let i = 0; i < targetCount; i++) {
-      const entity = document.createElement('a-entity');
-      entity.setAttribute('mindar-image-target', `targetIndex: ${i};`);
-      entity.classList.add(`target-index-${i}`);
+  // Check Camera location
+  const cameraEl = document.querySelector('a-camera'); // Get the camera entity
+  const cameraPosition = cameraEl.object3D.position; // Get the position vector of the camera
+  console.log("Camera position from start of the scene:", cameraPosition);
 
-      // Attach GLTF models to the entities
-      if (models != null) {
-        const model = models.find(model => model.targetIndex === i);
-        if (model) {
-          const gltfModel = document.createElement('a-gltf-model');
-          gltfModel.setAttribute('src', `#${model.id}`);
-          gltfModel.setAttribute('animation-mixer', '');
-          entity.appendChild(gltfModel);
-        }
+
+  const sceneEl = document.querySelector("a-scenae");
+  let arSystem;
+
+  // Listen for the loaded event of the A-Frame scene
+  sceneEl.addEventListener("loaded", function () {
+      // Access the MindAR system
+      arSystem = sceneEl.systems["mindar-image-system"];
+  });
+
+  // Function to stop tracking
+  function stopTracking() {
+      if (arSystem) {
+          // Call the stop method of the AR system
+          arSystem.stop();
       }
-
-      // Add the entity to the scene
-      scene.appendChild(entity);
-    }
   }
 
-  // Function to create and insert a video element dynamically
+  // Function to restart tracking
+  function restartTracking() {
+      if (arSystem) {
+          // Call the start method of the AR system
+          arSystem.start();
+      }
+  }
+  //Function to create and insert a video element dynamically
   function createVideo(videoConfig) {
     const videoElement = document.createElement('video');
     videoElement.setAttribute('id', videoConfig.id);
@@ -96,9 +110,15 @@ document.addEventListener("DOMContentLoaded", function () {
     videoElement.style.transform = 'translate(-50%, -50%)';
     videoElement.setAttribute('width', '320');
     videoElement.setAttribute('height', '180');
-    document.body.appendChild(videoElement);
+    document.body.appendChild(videoElement); // Append to the body
 
+    // const listener = document.querySelector(`[mindar-image-target="targetIndex: ${videoConfig.targetIndex}"]`);
+    
+    // Listen for the target being found
+    // Use the class corresponding to the video target index to find the correct entity
     const listener = document.querySelector(`.target-index-${videoConfig.targetIndex}`);
+
+    // Listen for the target being found
     if (listener) {
       listener.addEventListener('targetFound', () => onTargetFound(videoElement));
     } else {
@@ -112,14 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const cancelBtn = document.getElementById('cancelBtn');
     const UIoverlay = document.getElementById('UI-placement');
 
+    // Show video and buttons
     playPauseBtn.style.display = 'block';
     cancelBtn.style.display = 'block';
     videoElement.style.display = 'block';
     UIoverlay.style.display = 'none';
 
+    // Stop the AR system from scanning multiple targets
     arSystem.stop();
 
-    playPauseBtn.onclick = function () {
+    // Attach event listeners for play/pause button (for this specific video)
+    playPauseBtn.onclick = function() {
       if (videoElement.paused) {
         videoElement.play();
         playPauseBtn.textContent = 'Pause';
@@ -129,7 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    cancelBtn.onclick = function () {
+    // Handle the cancel action
+    cancelBtn.onclick = function() {
       playPauseBtn.style.display = 'none';
       cancelBtn.style.display = 'none';
       videoElement.pause();
@@ -138,26 +162,34 @@ document.addEventListener("DOMContentLoaded", function () {
       UIoverlay.style.display = 'flex';
       arSystem.start();
     };
-  }
-
-  const sceneEl = document.querySelector('a-scene');
-  let arSystem;
-
-  sceneEl.addEventListener("loaded", function () {
-    arSystem = sceneEl.systems["mindar-image-system"];
-  });
-
-  AFRAME.registerComponent('follow-camera-rotation', {
-    tick: function () {
-      let cameraEl = document.querySelector('a-camera');
-      if (cameraEl) {
-        this.el.object3D.quaternion.copy(cameraEl.object3D.quaternion);
-      }
-    }
-  });
-
-  screen.orientation.addEventListener("change", () => {
-    arSystem.stop();
-    arSystem.start();
-  });
+  } 
+  
 });
+
+  //Camera Tracking
+  AFRAME.registerComponent('follow-camera-rotation', {
+    tick: function (time, deltaTime) {
+      // Track the number of frames
+      this.frameCount = (this.frameCount || 0) + 1;
+
+      // Update rotation every 24 frames (adjust as needed)
+      if (this.frameCount % 24 === 0) {
+        // Assuming 'this.el' is the entity you want to rotate to match the camera's rotation
+        let cameraEl = document.querySelector('a-camera'); // Get the camera entity
+        if (cameraEl) {
+          // Copy the camera's quaternion to the entity
+          this.el.object3D.quaternion.copy(cameraEl.object3D.quaternion);
+        }
+      }  
+    }
+  });  
+
+screen.orientation.addEventListener("change", () => {
+  // window.location.reload();
+  arSystem.stop();
+  arSystem.start();
+});
+
+
+
+  
