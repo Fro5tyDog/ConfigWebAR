@@ -126,6 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+
+});
+
   // Function to handle target found, plays the video, shows the buttons, etc.
   function onTargetFound(videoElement) {
     const playPauseBtn = document.getElementById('playPauseBtn');
@@ -163,8 +166,6 @@ document.addEventListener("DOMContentLoaded", function () {
       arSystem.start();
     };
   } 
-  
-});
 
   //Camera Tracking
   AFRAME.registerComponent('follow-camera-rotation', {
