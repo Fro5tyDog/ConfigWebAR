@@ -18,7 +18,7 @@
   "gltfModels": [
     {
       "id": "cube",
-      "src": "./static/3D-files/mindAR/City/CityDemo.gltf",
+      "src": "./static/3D-files/mindAR/City/city_scape_low_poly.gltf",
       "targetIndex": 0
     }
   ],
