@@ -430,7 +430,7 @@
 		{
 			"bufferView":24,
 			"componentType":5126,
-			"count":1913,
+			"count":1914,
 			"max":[
 				-6.922905921936035,
 				-4.546699047088623,
@@ -446,13 +446,13 @@
 		{
 			"bufferView":25,
 			"componentType":5126,
-			"count":1913,
+			"count":1914,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":26,
 			"componentType":5126,
-			"count":1913,
+			"count":1914,
 			"type":"VEC2"
 		},
 		{
@@ -643,56 +643,56 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":22956,
+			"byteLength":22968,
 			"byteOffset":77384,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":22956,
-			"byteOffset":100340,
+			"byteLength":22968,
+			"byteOffset":100352,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":15304,
-			"byteOffset":123296,
+			"byteLength":15312,
+			"byteOffset":123320,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":7578,
-			"byteOffset":138600,
+			"byteOffset":138632,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":240,
-			"byteOffset":146180,
+			"byteOffset":146212,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":240,
-			"byteOffset":146420,
+			"byteOffset":146452,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":160,
-			"byteOffset":146660,
+			"byteOffset":146692,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":60,
-			"byteOffset":146820,
+			"byteOffset":146852,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":146880,
+			"byteLength":146912,
 			"uri":"Hume_MRT_Resized.bin"
 		}
 	]
