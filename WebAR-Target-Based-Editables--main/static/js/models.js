@@ -47,16 +47,12 @@ function loadModelViewers(config) {
   
     config.modelViewer3DModels.forEach((model, index) => {
       const modelViewer = document.createElement('model-viewer');
-      modelViewer.style.display = 'none'; // Default to hidden
-      modelViewer.setAttribute('ar-placement', 'floor');
       modelViewer.setAttribute('ar', '');
       modelViewer.setAttribute('ar-modes', 'scene-viewer quick-look');
-      modelViewer.setAttribute('reveal', 'manual');
       modelViewer.setAttribute('poster', model.poster); // Set from config
       modelViewer.id = `modelViewer${index + 1}`; // Dynamically set ID
-      modelViewer.setAttribute('ar', '');
       modelViewer.setAttribute('camera-controls', '');
-      modelViewer.setAttribute('touch-action', 'pan-y');
+      modelViewer.setAttribute('tone-mapping', 'neutral');
       modelViewer.setAttribute('src', model.src); // Set from config
       modelViewer.setAttribute('shadow-intensity', '1');
       modelViewer.setAttribute('alt', model.alt); // Set from config
