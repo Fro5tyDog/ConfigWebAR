@@ -43,33 +43,37 @@ for (let i = 1; i <= numElements; i++) {
 
 // Function to dynamically add <model-viewer> elements based on the config
 function loadModelViewers(config) {
-    const bodyElement = document.body;
-  
-    config.modelViewer3DModels.forEach((model, index) => {
-      const modelViewer = document.createElement('model-viewer');
-      modelViewer.setAttribute('ar', '');
-      modelViewer.setAttribute('ar-modes', 'scene-viewer quick-look');
-      modelViewer.setAttribute('poster', model.poster); // Set from config
-      modelViewer.id = `modelViewer${index + 1}`; // Dynamically set ID
-      modelViewer.setAttribute('camera-controls', '');
-      modelViewer.setAttribute('tone-mapping', 'neutral');
-      modelViewer.setAttribute('src', model.src); // Set from config
-      modelViewer.setAttribute('shadow-intensity', '1');
-      modelViewer.setAttribute('alt', model.alt); // Set from config
-  
-      // Append the dynamically created model-viewer element to the body
-      bodyElement.appendChild(modelViewer);
-    });
-  }
+  const bodyElement = document.body;
+
+  config.modelViewer3DModels.forEach((model, index) => {
+    const modelViewer = document.createElement('model-viewer');
+    modelViewer.style.display = 'none'; // Default to hidden
+    modelViewer.setAttribute('ar-placement', 'floor');
+    modelViewer.setAttribute('ar', '');
+    modelViewer.setAttribute('ar-modes', 'scene-viewer quick-look');
+    modelViewer.setAttribute('reveal', 'manual');
+    modelViewer.setAttribute('poster', model.poster); // Set from config
+    modelViewer.id = `modelViewer${index + 1}`; // Dynamically set ID
+    modelViewer.setAttribute('ar', '');
+    modelViewer.setAttribute('camera-controls', '');
+    modelViewer.setAttribute('touch-action', 'pan-y');
+    modelViewer.setAttribute('src', model.src); // Set from config
+    modelViewer.setAttribute('shadow-intensity', '1');
+    modelViewer.setAttribute('alt', model.alt); // Set from config
+
+    // Append the dynamically created model-viewer element to the body
+    bodyElement.appendChild(modelViewer);
+  });
+}
   
   // Update the initialization function to include model viewers loading
   async function initializeApp() {
     const config = await fetchConfig();
     
     if (config) {
-      // loadThumbnails(config);
+      loadThumbnails(config);
       loadModelViewers(config); // Load the 3D models after thumbnails
-      // addClickListeners(config);
+      addClickListeners(config);
     } else {
       console.error('Could not initialize app due to missing or invalid config.');
     }
