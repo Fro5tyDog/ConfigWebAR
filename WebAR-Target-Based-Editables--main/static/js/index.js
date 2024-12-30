@@ -167,24 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   } 
 
-  //Camera Tracking
-  AFRAME.registerComponent('follow-camera-rotation', {
-    tick: function (time, deltaTime) {
-      // Track the number of frames
-      this.frameCount = (this.frameCount || 0) + 1;
-
-      // Update rotation every 24 frames (adjust as needed)
-      if (this.frameCount % 24 === 0) {
-        // Assuming 'this.el' is the entity you want to rotate to match the camera's rotation
-        let cameraEl = document.querySelector('a-camera'); // Get the camera entity
-        if (cameraEl) {
-          // Copy the camera's quaternion to the entity
-          this.el.object3D.quaternion.copy(cameraEl.object3D.quaternion);
-        }
-      }  
-    }
-  });  
-
 screen.orientation.addEventListener("change", () => {
   // window.location.reload();
   arSystem.stop();
