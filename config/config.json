@@ -33,24 +33,14 @@
   "thumbnails": [
     {
       "id": "tapImg1",
-      "imgSrc": "./static/images/modelViewer-Thumbnails/thumbEx1.png"
-    },
-    {
-      "id": "tapImg2",
-      "imgSrc": "./static/images/modelViewer-Thumbnails/thumbEx2.png"
+      "imgSrc": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png"
     }
   ],
   "modelViewer3DModels": [
     {
       "thumbnailId": "tapImg1", 
-      "poster": "./static/images/modelViewer-Thumbnails/thumbEx1.png",
-      "src": "./static/3D-files/modelViewer/cube.gltf",
-      "alt": "A 3D model of a cube"
-    },
-    {
-      "thumbnailId": "tapImg2",
-      "poster": "./static/images/modelViewer-Thumbnails/thumbEx2.png",
-      "src": "./static/3D-files/modelViewer/cube.gltf",
+      "poster": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png",
+      "src": "./static/3D-files/modelViewer/HumeMRT/Hume_MRT_Resized.gltf",
       "alt": "A 3D model of a cube"
     }
   ]
