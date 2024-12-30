@@ -40,8 +40,8 @@
     {
       "thumbnailId": "tapImg1", 
       "poster": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png",
-      "src": "./static/3D-files/modelViewer/HumeMRT/Hume_MRT_Resized.gltf",
-      "alt": "A 3D model of a cube"
+      "src": "./static/3D-files/modelViewer/Gantry/Gantry.gltf",
+      "alt": "A 3D model of a gantry"
     }
   ]
 }
