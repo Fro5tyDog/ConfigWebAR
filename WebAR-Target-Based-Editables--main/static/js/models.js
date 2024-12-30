@@ -67,9 +67,9 @@ function loadModelViewers(config) {
     const config = await fetchConfig();
     
     if (config) {
-      loadThumbnails(config);
+      // loadThumbnails(config);
       loadModelViewers(config); // Load the 3D models after thumbnails
-      addClickListeners(config);
+      // addClickListeners(config);
     } else {
       console.error('Could not initialize app due to missing or invalid config.');
     }
