@@ -1,25 +1,13 @@
 [
   {
     "name": "magnemite",
-    "filePath": "./assets/magnemite/scene.gltf",
+    "filePath": "./assets/CableCar/CableCar_1.gltf",
     "location": {
-      "lat": 1.308649149724571,
-      "lng": 103.8495541458054
+      "lat": 1.3090600772574301,
+      "lng": 103.84902653353535
     },
     "visibilityRange": {
-      "min": 1,
-      "max": 150
-    }
-  },
-  {
-    "name": "dragonite",
-    "filePath": "./assets/dragonite/scene.gltf",
-    "location": {
-      "lat": 1.3088802475914334,
-      "lng": 103.84915575484025
-    },
-    "visibilityRange": {
-      "min": 10,
+      "min": 0,
       "max": 150
     }
   }
