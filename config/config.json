@@ -34,24 +34,14 @@
     {
       "id": "tapImg1",
       "imgSrc": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png"
-    },
-    {
-      "id": "tapImg2",
-      "imgSrc": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png"
     }
   ],
   "modelViewer3DModels": [
     {
       "thumbnailId": "tapImg1", 
       "poster": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png",
-      "src": "./static/3D-files/modelViewer/Gantry/Gantry.gltf",
-      "alt": "A 3D model of a gantry"
-    },
-    {
-      "thumbnailId": "tapImg2", 
-      "poster": "./static/images/modelViewer-Thumbnails/hume_thumbnail.png",
       "src": "./static/3D-files/modelViewer/HumeMRT/MRT.gltf",
-      "alt": "A 3D model of a gantry"
+      "alt": "A 3D model of the MRT"
     }
   ]
 }
