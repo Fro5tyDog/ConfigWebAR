@@ -9,7 +9,7 @@
   },
   "displaytypes": {
     "videos": {
-      "enabled": true
+      "enabled": false
     },
     "models": {
       "enabled": true
@@ -29,7 +29,7 @@
       "targetIndex": 1
     }
   ],
-  "targetCount": 2,
+  "targetCount": 1,
   "thumbnails": [
     {
       "id": "tapImg1",
