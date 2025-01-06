@@ -62,7 +62,7 @@ function renderModels(){
                     model.setAttribute('rotation', '0 0 0');
                     model.setAttribute('animation-mixer', 'clip: *; loop: repeat; timeScale: 1.1; clampWhenFinished: true; crossFadeDuration: 0.3');
                     model.setAttribute('look-at', '[camera]');
-                    model.setAttribute('scale', '0.15 0.15 0.15'); // Initial scale
+                    // model.setAttribute('scale', '0.15 0.15 0.15'); Initial scale
                     model.setAttribute('visible', 'false'); // Start with visibility off doesn't work for some reason.
                     model.classList.add(`${name}`);
                     
