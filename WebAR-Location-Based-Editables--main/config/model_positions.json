@@ -1,14 +1,26 @@
 [
   {
-    "name": "CableCar",
-    "filePath": "./assets/CableCar/CableCar_1.gltf",
+    "name": "Cable_Car",
+    "filePath": "./assets/3D_Models/CableCar/CableCar_1.gltf",
     "location": {
-      "lat": 1.3090600772574301,
-      "lng": 103.84902653353535
+      "lat": 1.30903965691314,
+      "lng": 103.84908502882014
     },
     "visibilityRange": {
       "min": 0,
-      "max": 150
+      "max": 100
+    }
+  },
+  {
+    "name": "Gantry",
+    "filePath": "./assets/3D_Models/Gantry/Gantry.gltf",
+    "location": {
+      "lat": 1.3086356574733822,
+      "lng": 103.84991345696235
+    },
+    "visibilityRange": {
+      "min": 0,
+      "max": 100
     }
   }
 ]
