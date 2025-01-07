@@ -607,7 +607,7 @@ function startAnimationLoop() {
         }
 
         const debug = document.getElementById("debug");
-        debug.textContent = targetDetails.lat + " " + targetDetails.lng;
+        debug.innerHTML = `${targetDetails.lat} and ${targetDetails.lng}`;
         // Request the next frame
         requestAnimationFrame(update);
     }
