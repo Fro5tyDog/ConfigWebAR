@@ -606,6 +606,8 @@ function startAnimationLoop() {
             arrow.style.transform = `translate(-50%, -50%) rotate(${shortestDifference}deg)`;
         }
 
+        const debug = document.getElementById("debug");
+        debug.innerHTML = targetDetails.lat + " " + targetDetails.lng;
         // Request the next frame
         requestAnimationFrame(update);
     }
