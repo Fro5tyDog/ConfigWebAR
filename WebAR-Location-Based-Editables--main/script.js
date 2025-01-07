@@ -343,6 +343,7 @@ function selectedTarget(name){
                 targetDetails.lat = model.lat;
                 targetDetails.lng = model.lng;
                 appLoop();
+                init();
             };
         })
     }
@@ -383,8 +384,8 @@ function getPlayerPosition(findDistanceRelativeToModel){
                 lat: position.latitude, 
                 lng: position.longitude
             };
-            current.latitude = playerPos.lat;
-            current.longitude = playerPos.lng;
+            current.lat = playerPos.lat;
+            current.lng = playerPos.lng;
             
             console.log("Got player position");
             findDistanceRelativeToModel(playerPos, validateIfTooClose);
@@ -518,91 +519,115 @@ function toDegrees(radians) {
 
 
 // ##################################################################################################
-let current = { latitude: null, longitude: null };
-let lastAlpha = 0;
-let direction = 0;
+// Arrow functions #################################
+// current lat and lng coordinates updated from 
+let current = { lat: null, lng: null };
+
+let compassHeading = 0; // Current heading of the phone
+let angle = 0; // Angle to the destination
+let isCompassReady = false; // Ensure compass data is initialized
+
 // function to initialize geolocation and device orientation. runs automatically
-function init() {
-    // navigator.geolocation.watchPosition(setCurrentPosition, null, geolocationOptions);
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener(
-            "deviceorientation",
-            (event) => {
-                const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-                handleOrientationEvent(rotateDegrees);
-            },
-            true
+async function init() {
+    await confirmMobile();
+
+    // Start the animation loop for updates
+    startAnimationLoop();
+}
+
+function confirmMobile() {
+    return new Promise((resolve, reject) => {
+        try{
+            // Call the function to fetch the Quadrant Data
+            resolve(promiseConfirmMobile());
+        }
+        catch(error){
+            reject(new Error(`Error fetching mobile phone data: ${error.message}`));
+        }   
+    })
+}
+
+function promiseConfirmMobile(){
+    try{
+        const isIOS = !(
+            navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
+            navigator.userAgent.match(/AppleWebKit/)
         );
-    }
-}
-
-// Pass the alpha (rotateDegrees) to runCalculation
-const handleOrientationEvent = (rotateDegrees) => {
-    // Call runCalculation with the fetched alpha value
-    runCalculation(rotateDegrees);
-
-};
-
-// Update runCalculation to accept alpha as a parameter
-function calcBearing(lat1, lon1, lat2, lon2) {
-    // Convert all latitudes and longitudes from degrees to radians
-    const φ1 = toRadians(lat1);
-    const λ1 = toRadians(lon1);
-    const φ2 = toRadians(lat2);
-    const λ2 = toRadians(lon2);
-
-    const y = Math.sin(λ2 - λ1) * Math.cos(φ2);
-    const x = Math.cos(φ1) * Math.sin(φ2) - 
-              Math.sin(φ1) * Math.cos(φ2) * Math.cos(λ2 - λ1);
-    const θ = Math.atan2(y, x);
-
-    // Convert the angle from radians to degrees and normalize it to 0-360
-    const bearing = (toDegrees(θ) + 360) % 360;
-    return bearing;
-}
-
-function runCalculation(alpha) {
-
-
-    const lat1 = current.latitude;
-    const lon1 = current.longitude;
-    const lat2 = targetDetails.lat;
-    const lon2 = targetDetails.lng;
-    const consoleText = document.getElementById('console-text');
-
-    // Calculate the bearing to the target
-    if(lat1 != null && lon1 != null && lat2 != null && lon2 != null){
-        const bearing = calcBearing(lat1, lon1, lat2, lon2);
-        // Calculate the direction by adjusting the bearing with the phone's orientation
     
-        direction = (alpha - bearing) % 360;
+        if (isIOS) {
+            DeviceOrientationEvent.requestPermission()
+              .then((response) => {
+                if (response === "granted") {
+                  window.addEventListener("deviceorientation", handler, true);
+                } else {
+                  alert("has to be allowed!");
+                }
+              })
+              .catch(() => alert("not supported"));
+          } else {
+            window.addEventListener("deviceorientationabsolute", handler, true);
+          }
+    }catch(err){
+        console.error(new Error('Not a mobile device'));
+    }
+}   
 
-        // Start the UI updates
-        updateUI();
-        // consoleText.innerHTML = `Bearing to target: ${bearing}°\nDevice orientation (alpha): ${alpha}°\nCalculated direction for arrow: ${direction}°\ncurrentLat: ${current.latitude}\ncurrentLongitude: ${current.longitude}`;
-        consoleText.innerHTML = ``;
-        direction.toFixed(0); // Round to the nearest degree
+function handler(e) {
+    if (e.webkitCompassHeading !== undefined) {
+        compassHeading = e.webkitCompassHeading; // iOS-specific
+    } else if (e.alpha !== null) {
+        compassHeading = 360 - e.alpha; // Normalize alpha to compass direction
     } else {
-        // keep this for player information.
-        console.error("Cannot calculate direction to target because geolocation data is not available.");
+        console.warn("Compass heading not available.");
     }
-    
-    
-
+    isCompassReady = true; // Mark that compass data is now ready
 }
 
-// starts updating the UI.
-function updateUI() {
-    // Update arrow rotation
-    const arrow = document.querySelector(".arrow");
-    arrow.style.transform = `translate(-50%, -50%) rotate(${direction}deg)`;
-    requestAnimationFrame(updateUI);
+// Animation Loop
+function startAnimationLoop() {
+    function update() {
+        if (isCompassReady) {
+            // Update compass arrow
+            const compassElement = document.getElementById("compass");
+            if (compassElement) {
+                compassElement.style.transform = `rotate(${compassHeading}deg)`;
+            }
+
+            // Dynamically recalculate the destination angle
+            const lat_diff = targetDetails.lat - current.lat;
+            const lng_diff = targetDetails.lng - current.lng;
+            let updatedAngle = (Math.atan2(lng_diff, lat_diff) * 180) / Math.PI;
+            updatedAngle = (updatedAngle + 360) % 360; // Normalize to 0-359 degrees
+
+            // Update target pointer arrow
+            const shortestDifference = calculateShortestRotation(updatedAngle, compassHeading);
+            const arrow = document.querySelector(".arrow");
+            arrow.style.transform = `translate(-50%, -50%) rotate(${shortestDifference}deg)`;
+        }
+
+        // Request the next frame
+        requestAnimationFrame(update);
+    }
+
+    // Start the loop
+    update();
+}
+
+
+
+function calculateShortestRotation(destinationAngle, compassHeading) {
+    // Calculate the raw difference
+    let rawDifference = destinationAngle - compassHeading;
+
+    // Normalize the difference to -180 to 180
+    let shortestDifference = (rawDifference + 180) % 360 - 180;
+
+    return shortestDifference; // Shortest rotation angle
 }
 
 // Initialize compass and location tracking when DOM loads
 document.addEventListener('DOMContentLoaded', function () {
     initializeMyApp();
-    init();
 });
 
 
