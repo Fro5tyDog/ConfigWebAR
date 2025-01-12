@@ -109,14 +109,14 @@ footer {
 }
 
 /* Left Column - Icon */
-.app-icon .error-icon{
+.app-icon{
     flex: 0 0 80px; /* Fixed width for the icon column */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.app-icon img .error-icon img{
+.app-icon img{
     width: 80px;
     height: 80px;
     object-fit: contain;
