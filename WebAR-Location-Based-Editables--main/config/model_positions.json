@@ -1,6 +1,6 @@
 [
   {
-    "name": "CableCar",
+    "name": "cablecar",
     "filePath": "./assets/CableCar/CableCar_1.gltf",
     "location": {
       "lat": 1.30903965691314,
@@ -12,7 +12,7 @@
     }
   },
   {
-    "name": "Gantry",
+    "name": "gantry",
     "filePath": "./assets/Gantry/Gantry.gltf",
     "location": {
       "lat": 1.3086356574733822,
