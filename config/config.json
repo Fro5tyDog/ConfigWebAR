@@ -1,10 +1,10 @@
 {
   "projects": {
     "locationBasedAR": {
-      "enabled": true
+      "enabled": false
     },
     "targetBasedAR": {
-      "enabled": false
+      "enabled": true
     }
   },
   "displaytypes": {
