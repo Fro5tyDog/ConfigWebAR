@@ -2,9 +2,7 @@
 
 This is a web application that bundles all existing WebAR projects into one. It utilises settings within a JSON file for users to adapt their own assets in a more modular and user-friendly manner. All settings are dynamically loaded through the DOM via javascript.
 
-In order to fully customise this application, do read the [documentation](https://docs.google.com/document/d/19cwEUnHil9duK8Ft2e--_a93_jggtFodaKbC-ouOoWY/edit?usp=sharing)
-
-## Installation
+## For Developers
 
 Download the files by [forking](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the repository and using [github desktop](https://github.com/apps/desktop). 
 
@@ -15,10 +13,11 @@ If you wish to run the application on a local host, you may use [git clone](http
 ```bash
 git clone https://github.com/Fro5tyDog/ConfigWebAR.git
 ```
+Please see the Developer Guide within [this](https://drive.google.com/drive/folders/13GVOiY32c2uWppKJ5ZMXRSwxtGfOGYEx?usp=sharing) Google Drive to learn more about the project and configuration
 
 ## Usage
 
-This project relies on a JSON file that contains editiable settings for developers. Below is an example of a JSON and what you will be seeing. To be able to understand all of the settings available, please read the [documentation](https://docs.google.com/document/d/19cwEUnHil9duK8Ft2e--_a93_jggtFodaKbC-ouOoWY/edit?usp=sharing) for this project.
+This project relies on a JSON file that contains editiable settings for developers. Below is an example of a JSON and what you will be seeing. To be able to understand all of the settings available, please read the [documentation](https://docs.google.com/document/d/1I3kQmtMRPS6pkKXD5JElM7wuc5F27URZ/edit?usp=sharing&ouid=101033659162590948863&rtpof=true&sd=true) for this project.
 
 ```json
 {
